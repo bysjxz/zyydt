@@ -1,0 +1,204 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.cdutcm.tcms.biz.mapper.UserProfileMapper">
+    <resultMap id="BaseResultMap" type="com.cdutcm.tcms.biz.model.UserProfile">
+        <id column="id" property="id" jdbcType="BIGINT" />
+        <result column="user_id" property="userId"  jdbcType="BIGINT"/>
+        <result column="username" property="username"  jdbcType="VARCHAR"/>
+        <result column="head_img" property="headImg"  jdbcType="VARCHAR"/>
+        <result column="sex" property="sex"  jdbcType="VARCHAR"/>
+        <result column="age" property="age"  jdbcType="VARCHAR"/>
+        <result column="birthday" property="birthday"  jdbcType="TIMESTAMP"/>
+        <result column="prof" property="prof"  jdbcType="TIMESTAMP"/>
+        <result column="cz_address" property="czAddress"  jdbcType="VARCHAR"/>
+        <result column="cz_time" property="czTime"  jdbcType="VARCHAR"/>
+        <result column="doc_desc" property="docDesc"  jdbcType="VARCHAR"/>
+        <result column="deptname" property="deptname"  jdbcType="VARCHAR"/>
+        <result column="title" property="title"  jdbcType="VARCHAR"/>
+        <result column="telephone" property="telephone"  jdbcType="VARCHAR"/>
+        <result column="email" property="email"  jdbcType="VARCHAR"/>
+        <result column="address" property="address"  jdbcType="VARCHAR"/>
+        <result column="work_time" property="workTime"  jdbcType="VARCHAR"/>
+        <result column="illness" property="illness"  jdbcType="VARCHAR"/>
+        <result column="education" property="education"  jdbcType="VARCHAR"/>
+        <result column="school" property="school"  jdbcType="VARCHAR"/>
+        <result column="teacher" property="teacher"  jdbcType="VARCHAR"/>
+    </resultMap>
+    <sql id="UserProfile_Column_List" >
+        id, user_id, username,prof,cz_address,cz_time,doc_desc, head_img, sex,age,birthday,deptname,title,telephone,email,address,work_time
+        ,illness,education,school,teacher
+    </sql>
+    <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Long" >
+        select
+        <include refid="UserProfile_Column_List" />
+        from user_profile
+        where id = #{id,jdbcType=BIGINT}
+    </select>
+
+    <select id="selectByUserId" resultMap="BaseResultMap" parameterType="java.lang.Long" >
+        select
+        <include refid="UserProfile_Column_List" />
+        from user_profile
+        where user_id = #{userId,jdbcType=BIGINT}
+    </select>
+    
+    <select id="selectByUserName" resultMap="BaseResultMap" parameterType="com.cdutcm.tcms.biz.model.UserProfile" >
+        select
+        <include refid="UserProfile_Column_List" />
+        from user_profile
+        where username = #{username,jdbcType=BIGINT}
+    </select>
+
+    <insert id="insertSelective" parameterType="com.cdutcm.tcms.biz.model.UserProfile" >
+        insert into user_profile
+        <trim prefix="(" suffix=")" suffixOverrides=",">
+            <if test="id!=null">
+                id,
+            </if>
+            <if test="userId!=null">
+                user_id,
+            </if>
+            <if test="username!=null">
+                username,
+            </if>
+            <if test="headImg!=null">
+                head_img,
+            </if>
+            <if test="sex!=null">
+                sex,
+            </if>
+            <if test="age!=null">
+                age,
+            </if>
+            <if test="birthday!=null">
+                birthday,
+            </if>
+            <if test="deptname!=null">
+                deptname,
+            </if>
+            <if test="title!=null">
+                title,
+            </if>
+            <if test="telephone!=null">
+                telephone,
+            </if>
+            <if test="email!=null">
+                email,
+            </if>
+            <if test="address!=null">
+                address,
+            </if>
+            <if test="workTime!=null">
+                work_time,
+            </if>
+            <if test="illness!=null">
+                illness,
+            </if>
+            <if test="school!=null">
+                school,
+            </if>
+            <if test="teacher!=null">
+                teacher,
+            </if>
+            <if test="education!=null">
+                education,
+            </if>
+        </trim>
+        <trim prefix="values (" suffix=")" suffixOverrides="," >
+            <if test="id!=null">
+                #{id,jdbcType=BIGINT},
+            </if>
+            <if test="userId!=null">
+                #{userId,jdbcType=BIGINT},
+            </if>
+            <if test="username!=null">
+                #{username,jdbcType=VARCHAR},
+            </if>
+            <if test="headImg!=null">
+                #{headImg,jdbcType=VARCHAR},
+            </if>
+            <if test="sex!=null">
+                #{id,jdbcType=VARCHAR},
+            </if>
+            <if test="age!=null">
+                #{age,jdbcType=VARCHAR},
+            </if>
+            <if test="birthday!=null">
+                #{birthday,jdbcType=TIMESTAMP},
+            </if>
+            <if test="deptname!=null">
+                #{deptname,jdbcType=VARCHAR},
+            </if>
+            <if test="title!=null">
+                #{title,jdbcType=VARCHAR},
+            </if>
+            <if test="telephone!=null">
+                #{telephone,jdbcType=VARCHAR},
+            </if>
+            <if test="email!=null">
+                #{email,jdbcType=VARCHAR},
+            </if>
+            <if test="address!=null">
+                #{address,jdbcType=VARCHAR},
+            </if>
+            <if test="workTime!=null">
+                #{work_time,jdbcType=VARCHAR},
+            </if>
+            <if test="illness!=null">
+                #{illness,jdbcType=VARCHAR},
+            </if>
+            <if test="school!=null">
+                #{school,jdbcType=VARCHAR},
+            </if>
+            <if test="teacher!=null">
+                #{teacher,jdbcType=VARCHAR},
+            </if>
+            <if test="education!=null">
+                #{education,jdbcType=VARCHAR},
+            </if>
+        </trim>
+    </insert>
+
+    <update id="updateByPrimaryKey" parameterType="com.cdutcm.tcms.biz.model.UserProfile" >
+    update user_profile
+   set   username = #{username,jdbcType=VARCHAR},
+
+        head_img = #{headImg,jdbcType=VARCHAR},
+
+        sex = #{sex,jdbcType=VARCHAR},
+
+        age = #{age,jdbcType=VARCHAR},
+
+        birthday = #{birthday,jdbcType=TIMESTAMP},
+
+        deptname = #{deptname,jdbcType=VARCHAR},
+
+        title = #{title,jdbcType=VARCHAR},
+
+        telephone = #{telephone,jdbcType=VARCHAR},
+
+        email = #{email,jdbcType=VARCHAR},
+
+        address = #{address,jdbcType=VARCHAR},
+
+        work_time = #{workTime,jdbcType=VARCHAR},
+
+        illness = #{illness,jdbcType=VARCHAR},
+
+        school = #{school,jdbcType=VARCHAR},
+
+        teacher = #{teacher,jdbcType=VARCHAR},
+
+        education = #{education,jdbcType=VARCHAR},
+
+        prof=#{prof},
+
+        cz_time = #{czTime},
+
+        cz_Address=#{czAddress},
+
+        doc_desc = #{docDesc}
+    where id = #{id,jdbcType=BIGINT}
+  </update>
+
+</mapper>

@@ -1,0 +1,378 @@
+<meta charset="utf-8" />
+<link href="${request.contextPath}/css/cfyx.css" rel="stylesheet">
+<link rel="stylesheet" href="${request.contextPath}/easyui/css/easyui.css">
+<div class="col-md-12">
+	<!-- BEGIN SAMPLE TABLE PORTLET-->
+	<div class="portlet light ">
+		<!--<div class="portlet-title">
+			<div class="caption">
+				<span class="caption-subject bold uppercase font-dark">处方用穴</span>
+			</div>
+		</div>-->
+
+
+
+		<div class="portlet-body">
+			<div class="row">
+				<div class="col-md-1">
+					<div class="easy-pie-chart">
+						<a class="title" href="javascript:;" style="font-size:16px"> 诊&emsp;断</a>
+					</div>
+				</div>
+				<div class="margin-bottom-4 visible-sm"></div>
+				<div class="col-md-10">
+					<div class="form-group form-md-line-input form-md-floating-label">
+						<input type="text" class="form-control" id="cf" name="bm">
+					</div>
+				</div>
+			</div>
+		</div>
+		<div class="portlet-body">
+			<div class="row">
+				<div class="col-md-1">
+					<div class="easy-pie-chart">
+						<a class="title" href="javascript:;" style="font-size:16px"> 用&emsp;穴 </a>
+					</div>
+				</div>
+				<div class="fileinput fileinput-new" data-provides="fileinput">
+					<div class="input-group input-large col-md-8" style="padding-left:15px;">
+						<input id="serachdiv" name="serachdiv" class="form-control"
+							style="height:40px;">
+						<!-- <div id="button_xuewei" style="margin:5px 5px;"></div> -->
+						<a href="javascript:;" class="input-group-addon btn red fileinput-exists"
+							data-dismiss="fileinput" style="margin-left:200px;height: 40px;font-size:16px">&emsp; 搜&emsp;&emsp;索 &emsp;</a>&ensp;
+					<a href="javascript:void(0);" id="recommend" class="input-group-addon btn red fileinput-exists"
+						data-dismiss="fileinput" style="font-size:16px"> &emsp;智能推荐&emsp; </a>
+					</div>
+				</div>
+			</div>
+			<div style="height: 35px;padding: 6px;margin: 5px 5px 15px 78px; width:700px" id="xws">
+				<!--<div class="xw_content" ondblclick="del(this)"
+					onclick="xwclick(this)">二间</div>
+                <div class="xw_content" ondblclick="del(this)"
+                     onclick="xwclick(this)">百汇</div>
+				<div class="xw_content" ondblclick="del(this)"
+					onclick="xwclick(this)">三间</div>-->
+			</div>
+		</div>
+		<div class="portlet-body">
+			<div class="row">
+				<div class="col-md-1">
+					<div class="easy-pie-chart">
+						<!--<h4 id="name"></h4>-->
+					</div>
+				</div>
+
+				<div class="margin-bottom-4 visible-sm"></div>
+				<div>
+					<div class="col-md-10">
+						<div class="easy-pie-chart">
+							<div class="yf">
+								<span class="yf_title">留针时间: </span>
+								<div id="time" class="usage">
+									<div class="yf_content_select">30min</div>
+									<div class="yf_content">20min</div>
+									<div class="yf_content">15min</div>
+								</div>
+							</div>
+							<div class="yf">
+								<span class="yf_title">方&emsp;&emsp;法:</span>
+								<div id="zz_method" class="usage">
+									<div class="yf_content_select">普通</div>
+									<div class="yf_content">点针刺</div>
+								</div>
+							</div>
+							<div class="yf">
+								<span class="yf_title">频&emsp;&emsp;率:</span>
+								<div id="freq" class="usage">
+									<div class="yf_content">25Hz</div>
+									<div class="yf_content_select">50Hz</div>
+									<div class="yf_content">75Hz</div>
+									<div class="yf_content">100Hz</div>
+									<!--<div class="yf_content">50Hz</div>-->
+								</div>
+							</div>
+							<div class="yf">
+								<span class="yf_title">波&emsp;&emsp;形:</span>
+								<div id="waveform" class="usage">
+									<div class="yf_content_select">连续波</div>
+									<div class="yf_content">断续波</div>
+									<div class="yf_content">疏密波</div>
+								</div>
+							</div>
+							<div class="yf">
+								<span class="yf_title">补&emsp;&emsp;泻:</span>
+								<div id="bx" class="usage">
+									<div class="yf_content_select">平补平泻</div>
+									<div class="yf_content">补</div>
+									<div class="yf_content">泻</div>
+								</div>
+							</div>
+							<div class="yf">
+								<div class="col-md-4" style="width: 350px">
+									<button type="submit" class="btn blue btn-square   todo-bold"
+										onclick="reset()" style="width:100px;float:left; margin:0 20px 0 80px;"
+										data-toggle="modal">清&emsp;&emsp;空</button>
+									<!--<button type="submit" class="btn blue btn-square   todo-bold"
+										onclick="nextXw()" style="width:100px;float:right;"
+										data-toggle="modal">下一穴位</button>-->
+									<button type="submit" id="applyAll" class="btn blue btn-square   todo-bold"
+											onclick="applyAll()" style="width:100px;float:left;"
+											data-toggle="modal">应用到所有</button>
+								</div>
+							</div>
+						</div>
+					</div>
+				</div>
+				<div class="col-md-12">
+                    <!--测试用-->
+                    <!--<button type="button" onclick="show()" class="btn blue btn-square" style="width:200px;float:right;">
+                    测试</button>-->
+					<button type="submit" class="btn blue btn-square   todo-bold"
+						style="width:150px;float:right;margin:0 80px 10px 20px" data-toggle="modal"
+						onclick="sendRecipel()">下一步</button>&nbsp;
+					<!-- sendRecipel()：点击跳到穴位敏化，该功能实现在cfyx.js中-->
+					<button type="submit" id="btn"  
+						class="btn" style="width:150px;
+						float:right;border:1.5px solid #217ebd;color:#217ebd">上一步</button>
+				</div>
+			</div>
+		</div>
+	</div>
+    <!-- 敏化检测模态框 -->
+	 <div id="todo-task-modal" class=" modal fade in " role="dialog"
+		tabindex="-1" aria-labelledby="myModalLabel10" aria-hidden="true"
+		style="display: none; padding-right: 17px;">
+		<div class="modal-dialog">
+			<div class="slimScrollDiv"
+				style=" position: relative; overflow: hidden;  width: auto;height: 100%; text-align: center; margin-top:30%">
+				<div class="modal-content scroller" data-always-visible="1"
+					data-rail-visible="0" data-initialized="1"
+					style="color: #9e9e9e;font-size: 18px;">
+					<div class="modal-body todo-task-modal-body">
+						<p>
+							—————————敏化检测——————— <label
+                                id="close"
+								class="btn btn-transparent btn-outline btn-circle btn-sm active">X</label>
+							——<br>
+							
+						<p class="todo-task-modal-bg">
+							诊疗仪将对医生处方用穴进行检测，检测的 <br> <br> 指标分别为穴位电阻敏化值、温度敏化值、压力值 <br>
+							<br>
+						</p>
+						<button id="start" onclick="toDiagnosis()"
+							style="width:150px;color: #ffffff;background-color: #fb784e;font-size: 15px;"
+							class="btn btn-square btn-sm red todo-bold">检测开始</button>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+	 <div id="bj" style="display: none;" class="modal-backdrop fade in"></div>
+	<!-- END CONTENT BODY -->
+</div>
+
+<link href="${request.contextPath}/css/cfyx.css" rel="stylesheet">
+<script src="${request.contextPath}/metronic/js/jquery.min.js" type="text/javascript"></script>
+<script src="${request.contextPath}/easyui/jquery.easyui.min.js" type="text/javascript"></script>
+<script src="${request.contextPath}/js/cfyx.js" type="text/javascript"></script>
+<script type="text/javascript">
+	function toDiagnosis() {
+            alert("处方发送成功，检测穴位个数："+names.length);
+            console.log(   JSON.stringify(names))
+            // $("#right_content").load("${request.contextPath}/toDiagnosis")
+            $.ajax({
+                type:'post',
+                url: 'toDiagnosis/getSeries',
+                data:{
+                    xwame:JSON.stringify(names)
+                },
+                success:function(data){
+                    $("#right_content").html(data)
+                }
+            });
+
+	}
+	<!--  -->
+</script>
+<!--获取穴位div中的值，测试用-->
+<script type="text/javascript">
+  function show() {
+      $(".iws").change(function () {
+          alert($(".xw_content").html());
+          alert($(".xw_content_select").html());
+      })
+  }
+
+
+  /*智能推荐*/
+  $("#recommend").click(function () {
+	  var diseaseName = localStorage.getItem("disease");
+	  if (lastName != "") {
+          if (confirm("是否保存之前填写的治疗信息")) {
+              //如果不存在信息，则为添加信息
+              if ($.inArray(lastName,names) == -1 && lastName != "应用成功") {
+                  var treatmentItem = new Array();
+                  $('.yf_content_select').each(function() {
+                      treatmentItem.push($(this).text());
+                  });
+                  var recipelItemJson = {"name":lastName,"time": treatmentItem[0],
+                      "zzMethod":treatmentItem[1],"freq":treatmentItem[2],
+                      "waveform":treatmentItem[3],"bx":treatmentItem[4]};
+                  recipelItems.push(recipelItemJson);
+                  names.push(lastName);
+                  lastName = "";
+                  // lastName = name;
+              }
+              console.log(recipelItems);
+          } else {
+              reset();
+          }
+	  }
+		//用法恢复默认
+	  restoreDefault();
+      $.ajax({
+          type: 'get',
+          url: contextPath+'/treatment/recommend',
+          data: {
+              diseaseName:diseaseName
+          },
+          success: function(data) {
+              if (data.length == 0) {
+                  alert("未找到该病的推荐方案");
+              } else {
+                  console.log(data);
+                  for (var i = 0; i < data.length; i++) {
+                      var xwBtn = '<div class="xw_content" ondblclick="del(this)" onclick="xwclick(this)">' + data[i].name + '</div>';
+                      $('#xws').append(xwBtn);
+                      console.log(data[i].name);
+                  }
+              }
+		  }
+      });
+  });
+  <!--点击回到上一页-->
+  $("#btn").click(function(){
+	var visitNo = localStorage.getItem("visitNo");
+	var patientNo = localStorage.getItem("patientNo");
+	$("#right_content").load("treatment/patient?patientNo="+patientNo+"&visitNo="+visitNo);
+})
+	<!--发送病名-->
+	var disease2 = localStorage.getItem("disease");
+			if(disease2!=""||disease2!=null){
+ 				$("input[name=bm]").val(disease2);
+ 				/* localStorage.removeItem("disease"); */
+				}
+
+    /*关闭模态框*/
+    $("#close").click(function () {
+        $("#bj").css('display','none')//隐
+        $("#todo-task-modal").css('display','none')//隐
+    })
+</script>
+</body>
+
+<!--
+<style>
+	.yf_content_select,.yf_content{
+		width: 75px;
+	}
+body {
+	background-color: #5C9BD1;
+}
+
+.static-info .name {
+	font-size: 16px;
+}
+
+.page-sidebar .page-sidebar-menu>li.active.open>a, .page-sidebar .page-sidebar-menu>li.active>a,
+	.page-sidebar-closed.page-sidebar-fixed .page-sidebar:hover .page-sidebar-menu>li.active.open>a,
+	.page-sidebar-closed.page-sidebar-fixed .page-sidebar:hover .page-sidebar-menu>li.active>a
+	{
+	background: #5C9BD1;
+	color: #fff;
+}
+
+.page-sidebar, .page-sidebar-closed.page-sidebar-fixed .page-sidebar:hover
+	{
+	background-color: #5C9BD1;
+}
+
+li a {
+	color: white;
+	font-size: 16px;
+}
+
+.profile-userpic img {
+	float: none;
+	margin: 0 auto;
+	width: 50%;
+	height: 50%;
+	-webkit-border-radius: 50% !important;
+	-moz-border-radius: 50% !important;
+	border-radius: 50% !important;
+	padding-left: 80%;
+}
+
+.page-header.navbar .page-logo {
+	background: #74AFE7;
+}
+
+.input-group .form-control, .input-group-addon, .input-group-btn {
+	display: table-cell;
+	border-color: red;
+}
+
+.easy-pie-chart .title, .sparkline-chart .title {
+	display: block;
+	text-align: left;
+	color: #333;
+	font-weight: 300;
+	font-size: 14px;
+	margin-top: 5px;
+	margin-bottom: 17px;
+}
+
+.btn
+:not
+(
+.btn-sm
+)
+:not
+(
+.btn-lg
+)
+{
+line-height: 1.44;
+width: 99px;
+height: 40px;
+margin: 6px;
+}
+.uneditable-input {
+	padding: 6px 12px;
+	min-width: 206px;
+	font-size: 14px;
+	font-weight: 400;
+	height: 40px;
+	color: #555;
+	background-color: #fff;
+	border: 1px solid #c2cad8;
+	-webkit-box-shadow: none;
+	box-shadow: none;
+	-webkit-transition: border-color ease-in-out .15s, box-shadow
+		ease-in-out .15s;
+	transition: border-color ease-in-out .15s, box-shadow ease-in-out .15s;
+}
+
+#element.style {
+	color: #FFF;
+	background-color: #3598dc;
+	border-color: #3598dc;
+	margin-left: 85%;
+}
+</style>
+-->
+
+
+</html>
+

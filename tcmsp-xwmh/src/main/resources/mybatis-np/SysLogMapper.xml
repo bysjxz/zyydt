@@ -1,0 +1,154 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.cdutcm.tcms.biz.mapper.SysLogMapper" >
+  <resultMap id="BaseResultMap" type="com.cdutcm.tcms.biz.model.SysLog" >
+    <id column="id" property="id" jdbcType="BIGINT" />
+    <result column="name" property="name" jdbcType="VARCHAR" />
+    <result column="ctype" property="ctype" jdbcType="VARCHAR" />
+    <result column="createor" property="createor" jdbcType="VARCHAR" />
+    <result column="lastupdate" property="lastupdate" jdbcType="TIMESTAMP" />
+    <result column="starttime" property="starttime" jdbcType="TIMESTAMP" />
+    <result column="params" property="params" jdbcType="VARCHAR" />
+    <result column="exceptionlinenumber" property="exceptionlinenumber" jdbcType="BIGINT" />
+    <result column="ip" property="ip" jdbcType="VARCHAR" />
+    <result column="returnvalue" property="returnvalue" jdbcType="VARCHAR" />
+    <result column="exceptionmessage" property="exceptionmessage" jdbcType="VARCHAR" />
+ 
+  </resultMap>
+  <resultMap id="ResultMapWithBLOBs" type="com.cdutcm.tcms.biz.model.SysLog" extends="BaseResultMap" >
+    <result column="description" property="description" jdbcType="LONGVARCHAR" />
+  </resultMap>
+  <sql id="Base_Column_List" >
+    id, name, ctype, createor, lastupdate,starttime,params,exceptionlinenumber,ip,returnvalue,exceptionmessage
+  </sql>
+  <sql id="Blob_Column_List" >
+    description
+  </sql>
+  <select id="selectByPrimaryKey" resultMap="ResultMapWithBLOBs" parameterType="java.lang.Long" >
+    select 
+    <include refid="Base_Column_List" />
+    ,
+    <include refid="Blob_Column_List" />
+    from sys_log
+    where id = #{id,jdbcType=BIGINT}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Long" >
+    delete from sys_log
+    where id = #{id,jdbcType=BIGINT}
+  </delete>
+  <insert id="insert" parameterType="com.cdutcm.tcms.biz.model.SysLog" >
+    insert into sys_log (id, name, ctype, 
+      createor, lastupdate, description, starttime, params, exceptionlinenumber, ip, returnvalue, exceptionmessage
+      )
+    values (#{id,jdbcType=BIGINT}, #{name,jdbcType=VARCHAR}, #{ctype,jdbcType=VARCHAR}, 
+      #{createor,jdbcType=VARCHAR}, #{lastupdate,jdbcType=TIMESTAMP}, #{description,jdbcType=LONGVARCHAR},#{starttime,jdbcType=TIMESTAMP},
+      #{params,jdbcType=VARCHAR}, #{exceptionlinenumber,jdbcType=BIGINT},#{ip,jdbcType=VARCHAR},#{returnvalue,jdbcType=VARCHAR},#{exceptionmessage,jdbcType=VARCHAR}
+      )
+  </insert>
+  <insert id="insertSelective" parameterType="com.cdutcm.tcms.biz.model.SysLog" >
+    insert into sys_log
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        id,
+      </if>
+      <if test="name != null" >
+        name,
+      </if>
+      <if test="ctype != null" >
+        ctype,
+      </if>
+      <if test="createor != null" >
+        createor,
+      </if>
+      <if test="lastupdate != null" >
+        lastupdate,
+      </if>
+      <if test="description != null" >
+        description,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        #{id,jdbcType=BIGINT},
+      </if>
+      <if test="name != null" >
+        #{name,jdbcType=VARCHAR},
+      </if>
+      <if test="ctype != null" >
+        #{ctype,jdbcType=VARCHAR},
+      </if>
+      <if test="createor != null" >
+        #{createor,jdbcType=VARCHAR},
+      </if>
+      <if test="lastupdate != null" >
+        #{lastupdate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="description != null" >
+        #{description,jdbcType=LONGVARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.cdutcm.tcms.biz.model.SysLog" >
+    update sys_log
+    <set >
+      <if test="name != null" >
+        name = #{name,jdbcType=VARCHAR},
+      </if>
+      <if test="ctype != null" >
+        ctype = #{ctype,jdbcType=VARCHAR},
+      </if>
+      <if test="createor != null" >
+        createor = #{createor,jdbcType=VARCHAR},
+      </if>
+      <if test="lastupdate != null" >
+        lastupdate = #{lastupdate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="description != null" >
+        description = #{description,jdbcType=LONGVARCHAR},
+      </if>
+    </set>
+    where id = #{id,jdbcType=BIGINT}
+  </update>
+  <update id="updateByPrimaryKeyWithBLOBs" parameterType="com.cdutcm.tcms.biz.model.SysLog" >
+    update sys_log
+    set name = #{name,jdbcType=VARCHAR},
+      ctype = #{ctype,jdbcType=VARCHAR},
+      createor = #{createor,jdbcType=VARCHAR},
+      lastupdate = #{lastupdate,jdbcType=TIMESTAMP},
+      description = #{description,jdbcType=LONGVARCHAR}
+    where id = #{id,jdbcType=BIGINT}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.cdutcm.tcms.biz.model.SysLog" >
+    update sys_log
+    set name = #{name,jdbcType=VARCHAR},
+      ctype = #{ctype,jdbcType=VARCHAR},
+      createor = #{createor,jdbcType=VARCHAR},
+      lastupdate = #{lastupdate,jdbcType=TIMESTAMP}
+    where id = #{id,jdbcType=BIGINT}
+  </update>
+    <!-- 分页获取日志信息-->
+    <select id="listPageSysLog" parameterType="com.cdutcm.tcms.biz.model.SysLog" resultMap="ResultMapWithBLOBs">
+		  select 
+    <include refid="Base_Column_List" />
+    ,
+    <include refid="Blob_Column_List" />
+    from sys_log
+    where 1=1  
+    <if test="id != null and id !=''" >
+	       and  id = #{id,jdbcType=BIGINT}
+	</if> 
+    <if test="ctype != null and ctype !=''" >
+	       and  ctype = #{ctype,jdbcType=VARCHAR}
+	</if>
+	<if test="createor != null and createor !=''" >
+	       and  createor = #{createor,jdbcType=VARCHAR}
+	</if>
+	<if test="lastupdate != null and lastupdate !=''" >
+	       and  lastupdate <![CDATA[ <= ]]>  #{lastupdate,jdbcType=TIMESTAMP}
+	</if>
+	<if test="starttime != null and starttime !=''" >
+	       and  starttime <![CDATA[ >= ]]>  #{starttime,jdbcType=TIMESTAMP}
+	</if>
+	
+  </select>
+</mapper>

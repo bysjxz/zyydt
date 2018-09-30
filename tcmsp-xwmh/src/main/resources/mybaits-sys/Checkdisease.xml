@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.cdutcm.tcms.sys.mapper.CheckdiseaseMapper" >
+  <resultMap id="SysbasefieldResultMap" type="com.cdutcm.tcms.sys.entity.Sysbasefield" >
+    <id column="id" property="id" jdbcType="INTEGER" />
+    <result column="display_field" property="displayfield" jdbcType="VARCHAR" />
+    <result column="value_field" property="valuefield" jdbcType="VARCHAR" />
+    <result column="enabled" property="enabled" jdbcType="INTEGER" />
+    <result column="field" property="field" jdbcType="VARCHAR" />
+    <result column="field_name" property="fieldname" jdbcType="VARCHAR" />
+    <result column="sort" property="sort" jdbcType="VARCHAR" />
+  </resultMap>
+  
+  <resultMap id="DieasenameResultMap" type="com.cdutcm.tcms.sys.entity.Dieasename" >
+    <id column="id" property="id" jdbcType="INTEGER" />
+    <result column="name" property="name" jdbcType="VARCHAR" />
+    <result column="nickname" property="nickname" jdbcType="VARCHAR" />
+    <result column="westname" property="westname" jdbcType="VARCHAR" />
+    <result column="code" property="code" jdbcType="VARCHAR" />
+    <result column="zyfl" property="zyfl" jdbcType="VARCHAR" />
+    <result column="pinyin" property="pinyin" jdbcType="VARCHAR" />
+    <result column="ctype" property="ctype" jdbcType="VARCHAR" />
+  </resultMap>
+  <!-- 根据名称或者拼音查询基础信息-->
+  <select id="searchsysbasefield"  parameterType="com.cdutcm.tcms.sys.entity.Sysbasefield"  resultMap="SysbasefieldResultMap">
+  	 select * from sys_basefield where field_name=#{fieldname}
+	 <if test="valuefield !=null and valuefield !='' or displayfield !=null and displayfield !=''">
+		and ( value_field like '%${valuefield}%' or display_field like '%${displayfield}%')
+	 </if>
+	 order by length(display_field) asc
+  </select> 
+  <select id="searchdieasename"  parameterType="com.cdutcm.tcms.sys.entity.Dieasename"  resultMap="DieasenameResultMap">
+   select * from disease where 1=1
+	 <if test="name !=null and name !='' or pinyin !=null and pinyin !=''">
+		and ( name like '%${name}%' or pinyin like '%${pinyin}%')
+	 </if>
+	 order by length(name) asc
+  
+  
+  </select>
+</mapper>

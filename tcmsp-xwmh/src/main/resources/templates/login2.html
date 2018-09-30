@@ -1,0 +1,163 @@
+	<head>
+    <title>登录</title>
+    <meta name="content-type" content="text/html; charset=UTF-8">
+    <link rel="stylesheet" href="bootstrap/css/bootstrap.css">
+    <link rel="stylesheet" href="css/iconfont.css">
+    <link href="metronic/css/font-awesome.min.css" rel="stylesheet" type="text/css"/>
+    <link href="bootstrap/css/bootstrap.min.css" rel="stylesheet" type="text/css"/>
+</head>
+<body>
+<h2><img src="img/zctitle.png"></h2>
+<div class="content">
+    <div class="type">
+        <div class="col-md-6"><a href="/xwmh/login"><img src='img/user2.png'></a><span style="color: #A3A3A3">普通人员</span></div>
+        <div class="col-md-6"><img src='img/js2.png'><span style="color: #74C0F0">技术人员</span></div>
+    </div>
+    <div class="regist-content">
+    <form id="form1" action="/xwmh/userlogin2" method="post">
+        <div class="regist-content-item">
+            <span><i class="iconfont icon-xiazai"></i></span>
+            <span><input type="text" placeholder="用户名/手机号" id="account" name="account"class="inputCss" autocomplete="off"></span>
+            <span id="account_info" style="color:red;font-size:12px" hidden="hidden">请输入账号</span>
+        </div>
+        <div class="regist-content-item">
+            <span><i class="iconfont icon-mima"></i></span>
+            <span><input type="password" placeholder="密码" id="password" name="password" class="inputCss"></span>
+            <span id="password_info" style="color:red;font-size:12px" hidden="hidden">请输入密码</span>
+            <input type="hidden" name="errInfo" value="${errInfo}">
+        </div>
+        <div class="regist-content-itemA">
+            <button id="login" type="submit" class="btn btn-info">登录</button>
+        </div>
+         </form>
+    </div>
+   
+</div>
+<footer>
+    <p>中医穴位敏化诊疗平台由成都中医药大学数字医药研究所研发</p>
+</footer>
+<script src="metronic/js/jquery.min.js" type="text/javascript"></script>
+<script src="metronic/js/bootstrap.min.js" type="text/javascript"></script>
+<script>
+    function skipToLogin() {
+        $("#inputContent").load("/tcmsp-np/login2");
+    }
+	function login2(){
+		$("#inputContent").load("/xwmh/login2");
+	}
+	function skipToRegist(){
+	    $("#inputContent").load("/xwmh/register");
+	}
+	$(function(){
+	var errInfo = $("input[name=errInfo]").val();
+	if(errInfo == "error"){
+		alert("登录失败，用户名或密码错误！");
+		location.href="/xwmh/login2";
+	}
+	$(".regist-content-itemA button").click(function(){
+		
+	})			
+})
+	$("#account").blur(function(){
+		var account=document.getElementById("account");
+		if(account.value==null || account.value==""){
+			$("#account_info").show();
+		}
+		else{
+			$("#account_info").hide();
+		}
+	})
+	$("#password").blur(function(){
+		var password=document.getElementById("password");
+		if(password.value==null || password.value==""){
+			$("#password_info").show();
+		}
+		else{
+			$("#password_info").hide();
+		}
+	})
+</script>
+</body>
+<style>
+	#clickHover{
+		font-size:16px;
+		color:#4d4d4d;
+	}
+	a:focus, a:hover{
+		text-decoration:none;
+	}
+    #clickHover:hover {
+        color: #9d9d9d;
+    }
+	input:-webkit-autofill {
+  -webkit-box-shadow: 0 0 0 1000px white inset !important;/* 输入框背景色 */
+}
+    .btn-info {
+        height: 40px;
+        width: 80%;
+        background:#74AFE7;
+    }
+
+    .inputCss {
+        height: 45px;
+        border: none;
+        outline: none;
+        padding-left: 20px;
+    }
+
+    .content {
+        width: 100%;
+    }
+
+    .regist-content {
+        width: 35%;
+        margin: 0 auto;
+    }
+
+    .regist-content-item {
+        font-size: 20px;
+        padding-top: 5%;
+        width: 100%;
+        border-bottom: 1px solid #ccc;
+    }
+
+    .regist-content-itemA {
+        text-align: center;
+        font-size: 20px;
+        padding-top: 5%;
+        width: 100%;
+        cursor: pointer;
+    }
+
+    h2 {
+        margin-top: 80px;
+        text-align: center;
+    }
+
+    .type {
+        text-align: center;
+        margin: 20px auto;
+        overflow:hidden;
+        width:20%;
+    }
+	.type div span{
+		display:block;
+		color:#74AFE7;
+	}
+	.type div:nth-child(2) span{
+		color:#a3a3a3;
+	}
+    footer {
+        padding-top: 20px;
+        text-align: center;
+        width: 90%;
+        border-top: 1px solid #ccc;
+        letter-spacing: 0.2em;
+        color: #ababab;
+        position: absolute;
+        bottom: 0;
+        left: 5%;
+        height: 120px;     
+    }
+</style>
+

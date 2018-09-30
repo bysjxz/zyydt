@@ -1,0 +1,393 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.cdutcm.tcms.biz.mapper.EmrMapper" >
+  <resultMap id="BaseResultMap" type="com.cdutcm.tcms.biz.model.Emr" >
+    <id column="id" property="id" jdbcType="BIGINT" />
+    <result column="disease" property="disease" jdbcType="VARCHAR" />
+    <result column="symptommould" property="symptommould" jdbcType="VARCHAR" />
+    <result column="symptom" property="symptom" jdbcType="VARCHAR" />
+    <result column="disease_west" property="diseasewest" jdbcType="VARCHAR" />
+    <result column="fs_code" property="fsCode" jdbcType="VARCHAR" />
+    <result column="chief_complaint" property="chiefComplaint" jdbcType="VARCHAR" />
+    <result column="illness_history_id" property="illnessHistoryId" jdbcType="BIGINT" />
+    <result column="bw" property="bw" jdbcType="VARCHAR" />
+    <result column="bx" property="bx" jdbcType="VARCHAR" />
+    <result column="therapy" property="therapy" jdbcType="VARCHAR" />
+    <result column="create_time" property="createTime" jdbcType="TIMESTAMP" />
+    <result column="lunar_time" property="lunarTime" jdbcType="VARCHAR" />
+    <result column="patient_no" property="patientNo" jdbcType="VARCHAR" />
+    <result column="visit_no" property="visitNo" jdbcType="VARCHAR" />
+    <result column="patient_name" property="patientName" jdbcType="VARCHAR" />
+    <result column="doctor_id" property="doctorId" jdbcType="VARCHAR" />
+    <result column="doctor_name" property="doctorName" jdbcType="VARCHAR" />
+    <result column="dept_id" property="deptId" jdbcType="VARCHAR" />
+    <result column="dept_name" property="deptName" jdbcType="VARCHAR" />
+    <result column="end_time" property="endTime" jdbcType="TIMESTAMP" />
+  </resultMap>
+  <resultMap id="EmrAndPatientResultMap" type="com.cdutcm.tcms.biz.model.Emr" >
+    <id column="eid" property="id" jdbcType="BIGINT" />
+    <result column="disease" property="disease" jdbcType="VARCHAR" />
+    <result column="symptommould" property="symptommould" jdbcType="VARCHAR" />
+    <result column="symptom" property="symptom" jdbcType="VARCHAR" />
+    <result column="disease_west" property="diseasewest" jdbcType="VARCHAR" />
+    <result column="fs_code" property="fsCode" jdbcType="VARCHAR" />
+    <result column="chief_complaint" property="chiefComplaint" jdbcType="VARCHAR" />
+    <result column="illness_history_id" property="illnessHistoryId" jdbcType="BIGINT" />
+    <result column="bw" property="bw" jdbcType="VARCHAR" />
+    <result column="bx" property="bx" jdbcType="VARCHAR" />
+    <result column="therapy" property="therapy" jdbcType="VARCHAR" />
+    <result column="create_time" property="createTime" jdbcType="TIMESTAMP" />
+    <result column="lunar_time" property="lunarTime" jdbcType="VARCHAR" />
+    <result column="epatient_no" property="patientNo" jdbcType="VARCHAR" />
+    <result column="visit_no" property="visitNo" jdbcType="VARCHAR" />
+    <result column="patient_name" property="patientName" jdbcType="VARCHAR" />
+    <result column="doctor_id" property="doctorId" jdbcType="VARCHAR" />
+    <result column="doctor_name" property="doctorName" jdbcType="VARCHAR" />
+    <result column="dept_id" property="deptId" jdbcType="VARCHAR" />
+    <result column="dept_name" property="deptName" jdbcType="VARCHAR" />
+    <result column="end_time" property="endTime" jdbcType="TIMESTAMP" />
+   <association column="patient" property="patient" javaType="com.cdutcm.tcms.biz.model.Patient">
+			<id column="pid" property="id"/>
+			<result column="ppatient_no" property="patientNo"/>
+			<result column="pinyin" property="pinyin"/>
+			<result column="name" property="name"/>
+			<result column="sex" property="sex"/>
+			<result column="birthday" property="birthday"/>
+			<result column="address" property="address"/>
+			<result column="telephone" property="telephone"/>
+			<result column="card_no" property="cardNo"/>
+			<result column="note" property="note"/>
+			<result column="ye" property="ye"/>
+			<result column="height" property="height"/>
+			<result column="weight" property="weight"/>
+			<result column="status" property="status"/>
+		</association>
+  </resultMap>
+  <sql id="Base_Column_List" >
+    id, disease,  symptom, fs_code, chief_complaint, illness_history_id,
+    bw, bx, therapy, create_time, lunar_time, patient_no, visit_no, patient_name, doctor_id, 
+    doctor_name, dept_id, dept_name, end_time,disease_west
+  </sql>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Long" >
+    select 
+    <include refid="Base_Column_List" />
+    from emr
+    where id = #{id,jdbcType=BIGINT}
+  </select>
+   
+   <!-- 病人信息详情查看 -->
+  <select id="selectEmrAndPatient" parameterType="java.lang.Long"  resultMap="EmrAndPatientResultMap">
+   select e.id as eid,e.patient_no as epatient_no,e.disease,e.patient_name,e.doctor_id,e.visit_no,e.doctor_name,
+   	p.id as pid,p.name,p.sex,p.birthday,p.address,p.telephone,p.status
+   from emr e left join patient p on e.patient_no=p.patient_no  where 1=1
+	     <if test="id != null" >
+	       and  id = #{id,jdbcType=BIGINT}
+	     </if>
+	     
+  </select>
+  
+  <select id="listPagefindEmrBydoctorId" parameterType="com.cdutcm.tcms.biz.model.Emr"  resultMap="EmrAndPatientResultMap">
+   select e.id as eid,e.patient_no as epatient_no,e.disease,e.patient_name,e.doctor_id,e.visit_no,e.doctor_name,
+   	p.id as pid,p.name,p.sex,p.birthday,p.address,p.telephone,p.status
+   from emr e left join patient p on e.patient_no=p.patient_no  where 1=1
+	     <if test="doctorId != null" >
+	       and  doctor_id = #{doctorId,jdbcType=VARCHAR}
+	     </if>
+	     order by create_time desc
+  </select>
+  <select id="selectIdByDisease" parameterType="com.cdutcm.tcms.biz.model.Emr"  resultMap="BaseResultMap">
+  select id from emr where disease = #{disease,jdbcType=VARCHAR}
+  </select>
+  
+  <!--查询病例并计数-->
+  <resultMap id="CounterResultMap" type="com.cdutcm.tcms.biz.model.Emr" >
+    <id column="id" property="id" jdbcType="BIGINT" />
+    <result column="disease" property="disease" jdbcType="VARCHAR" />
+    <result column="counter" property="counter" jdbcType="INTEGER" />
+  </resultMap>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Long" >
+    delete from emr
+    where id = #{id,jdbcType=BIGINT}
+  </delete>
+  <insert id="insert" parameterType="com.cdutcm.tcms.biz.model.Emr" >
+    insert into emr (id, disease, symptommould, 
+      symptom, fs_code, chief_complaint, 
+      illness_history_id, bw, bx, 
+      therapy, create_time, lunar_time, 
+      patient_no, visit_no, patient_name, 
+      doctor_id, doctor_name, dept_id, 
+      dept_name, end_time,disease_west)
+    values (#{id,jdbcType=BIGINT}, #{disease,jdbcType=VARCHAR}, #{symptommould,jdbcType=VARCHAR}, 
+      #{symptom,jdbcType=VARCHAR}, #{fsCode,jdbcType=VARCHAR}, #{chiefComplaint,jdbcType=VARCHAR}, 
+      #{illnessHistoryId,jdbcType=BIGINT}, #{bw,jdbcType=VARCHAR}, #{bx,jdbcType=VARCHAR}, 
+      #{therapy,jdbcType=VARCHAR}, #{createTime,jdbcType=TIMESTAMP}, #{lunarTime,jdbcType=VARCHAR}, 
+      #{patientNo,jdbcType=VARCHAR}, #{visitNo,jdbcType=VARCHAR}, #{patientName,jdbcType=VARCHAR}, 
+      #{doctorId,jdbcType=VARCHAR}, #{doctorName,jdbcType=VARCHAR}, #{deptId,jdbcType=VARCHAR}, 
+      #{deptName,jdbcType=VARCHAR}, #{endTime,jdbcType=TIMESTAMP}, #{diseasewest,jdbcType=VARCHAR})
+  </insert>
+  <insert id="insertSelective" parameterType="com.cdutcm.tcms.biz.model.Emr" >
+    insert into emr
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        id,
+      </if>
+      <if test="disease != null" >
+        disease,
+      </if>
+      <if test="symptommould != null" >
+        symptommould,
+      </if>
+      <if test="symptom != null" >
+        symptom,
+      </if>
+      <if test="fsCode != null" >
+        fs_code,
+      </if>
+      <if test="chiefComplaint != null" >
+        chief_complaint,
+      </if>
+      <if test="illnessHistoryId != null" >
+        illness_history_id,
+      </if>
+      <if test="bw != null" >
+        bw,
+      </if>
+      <if test="bx != null" >
+        bx,
+      </if>
+      <if test="therapy != null" >
+        therapy,
+      </if>
+      <if test="createTime != null" >
+        create_time,
+      </if>
+      <if test="lunarTime != null" >
+        lunar_time,
+      </if>
+      <if test="patientNo != null" >
+        patient_no,
+      </if>
+      <if test="visitNo != null" >
+        visit_no,
+      </if>
+      <if test="patientName != null" >
+        patient_name,
+      </if>
+      <if test="doctorId != null" >
+        doctor_id,
+      </if>
+      <if test="doctorName != null" >
+        doctor_name,
+      </if>
+      <if test="deptId != null" >
+        dept_id,
+      </if>
+      <if test="deptName != null" >
+        dept_name,
+      </if>
+      <if test="endTime != null" >
+        end_time,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        #{id,jdbcType=BIGINT},
+      </if>
+      <if test="disease != null" >
+        #{disease,jdbcType=VARCHAR},
+      </if>
+      <if test="symptommould != null" >
+        #{symptommould,jdbcType=VARCHAR},
+      </if>
+      <if test="symptom != null" >
+        #{symptom,jdbcType=VARCHAR},
+      </if>
+      <if test="fsCode != null" >
+        #{fsCode,jdbcType=VARCHAR},
+      </if>
+      <if test="chiefComplaint != null" >
+        #{chiefComplaint,jdbcType=VARCHAR},
+      </if>
+      <if test="illnessHistoryId != null" >
+        #{illnessHistoryId,jdbcType=BIGINT},
+      </if>
+      <if test="bw != null" >
+        #{bw,jdbcType=VARCHAR},
+      </if>
+      <if test="bx != null" >
+        #{bx,jdbcType=VARCHAR},
+      </if>
+      <if test="therapy != null" >
+        #{therapy,jdbcType=VARCHAR},
+      </if>
+      <if test="createTime != null" >
+        #{createTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="lunarTime != null" >
+        #{lunarTime,jdbcType=VARCHAR},
+      </if>
+      <if test="patientNo != null" >
+        #{patientNo,jdbcType=VARCHAR},
+      </if>
+      <if test="visitNo != null" >
+        #{visitNo,jdbcType=VARCHAR},
+      </if>
+      <if test="patientName != null" >
+        #{patientName,jdbcType=VARCHAR},
+      </if>
+      <if test="doctorId != null" >
+        #{doctorId,jdbcType=VARCHAR},
+      </if>
+      <if test="doctorName != null" >
+        #{doctorName,jdbcType=VARCHAR},
+      </if>
+      <if test="deptId != null" >
+        #{deptId,jdbcType=VARCHAR},
+      </if>
+      <if test="deptName != null" >
+        #{deptName,jdbcType=VARCHAR},
+      </if>
+      <if test="endTime != null" >
+        #{endTime,jdbcType=TIMESTAMP},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.cdutcm.tcms.biz.model.Emr" >
+    update emr
+    <set >
+      <if test="disease != null" >
+        disease = #{disease,jdbcType=VARCHAR},
+      </if>
+      <if test="symptommould != null" >
+        symptommould = #{symptommould,jdbcType=VARCHAR},
+      </if>
+      <if test="symptom != null" >
+        symptom = #{symptom,jdbcType=VARCHAR},
+      </if>
+      <if test="fsCode != null" >
+        fs_code = #{fsCode,jdbcType=VARCHAR},
+      </if>
+      <if test="chiefComplaint != null" >
+        chief_complaint = #{chiefComplaint,jdbcType=VARCHAR},
+      </if>
+      <if test="illnessHistoryId != null" >
+        illness_history_id = #{illnessHistoryId,jdbcType=BIGINT},
+      </if>
+      <if test="bw != null" >
+        bw = #{bw,jdbcType=VARCHAR},
+      </if>
+      <if test="bx != null" >
+        bx = #{bx,jdbcType=VARCHAR},
+      </if>
+      <if test="therapy != null" >
+        therapy = #{therapy,jdbcType=VARCHAR},
+      </if>
+      <if test="createTime != null" >
+        create_time = #{createTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="lunarTime != null" >
+        lunar_time = #{lunarTime,jdbcType=VARCHAR},
+      </if>
+      <if test="patientNo != null" >
+        patient_no = #{patientNo,jdbcType=VARCHAR},
+      </if>
+      <if test="visitNo != null" >
+        visit_no = #{visitNo,jdbcType=VARCHAR},
+      </if>
+      <if test="patientName != null" >
+        patient_name = #{patientName,jdbcType=VARCHAR},
+      </if>
+      <if test="doctorId != null" >
+        doctor_id = #{doctorId,jdbcType=VARCHAR},
+      </if>
+      <if test="doctorName != null" >
+        doctor_name = #{doctorName,jdbcType=VARCHAR},
+      </if>
+      <if test="deptId != null" >
+        dept_id = #{deptId,jdbcType=VARCHAR},
+      </if>
+      <if test="deptName != null" >
+        dept_name = #{deptName,jdbcType=VARCHAR},
+      </if>
+      <if test="endTime != null" >
+        end_time = #{endTime,jdbcType=TIMESTAMP},
+      </if>
+    </set>
+    where id = #{id,jdbcType=BIGINT}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.cdutcm.tcms.biz.model.Emr" >
+    update emr
+    set disease = #{disease,jdbcType=VARCHAR},
+      symptommould = #{symptommould,jdbcType=VARCHAR},
+      symptom = #{symptom,jdbcType=VARCHAR},
+      fs_code = #{fsCode,jdbcType=VARCHAR},
+      chief_complaint = #{chiefComplaint,jdbcType=VARCHAR},
+      illness_history_id = #{illnessHistoryId,jdbcType=BIGINT},
+      bw = #{bw,jdbcType=VARCHAR},
+      bx = #{bx,jdbcType=VARCHAR},
+      therapy = #{therapy,jdbcType=VARCHAR},
+      create_time = #{createTime,jdbcType=TIMESTAMP},
+      lunar_time = #{lunarTime,jdbcType=VARCHAR},
+      patient_no = #{patientNo,jdbcType=VARCHAR},
+      visit_no = #{visitNo,jdbcType=VARCHAR},
+      patient_name = #{patientName,jdbcType=VARCHAR},
+      doctor_id = #{doctorId,jdbcType=VARCHAR},
+      doctor_name = #{doctorName,jdbcType=VARCHAR},
+      dept_id = #{deptId,jdbcType=VARCHAR},
+      dept_name = #{deptName,jdbcType=VARCHAR},
+      end_time = #{endTime,jdbcType=TIMESTAMP},
+      disease_west = #{diseasewest,jdbcType=VARCHAR}
+    where id = #{id,jdbcType=BIGINT}
+  </update>
+  
+  <select id="listPagefindEmrByNo" parameterType="com.cdutcm.tcms.biz.model.Emr"  resultMap="BaseResultMap">
+   select * from emr where 1=1
+         <if test="patientNo != null" >
+	       and  patient_no = #{patientNo,jdbcType=VARCHAR}
+	     </if>
+	      <if test="visitNo != null" >
+	       and  visit_no = #{visitNo,jdbcType=VARCHAR}
+	     </if>
+	     <if test="doctorId != null" >
+	       and  doctor_id = #{doctorId,jdbcType=VARCHAR}
+	     </if>
+	     order by create_time desc
+  </select>
+  
+  <delete id="deleteEmrAndRecipel" parameterType="java.lang.Long" >
+     delete from recipel_item where recipel_id in (select id from recipel where emrId =#{id,jdbcType=BIGINT});
+     delete from  recipel where emrId = #{id,jdbcType=BIGINT};
+     delete from emr where id = #{id,jdbcType=BIGINT};
+  </delete>
+  
+  <select id="findAllEmr" resultMap="BaseResultMap">
+    select * from emr
+  </select>
+  <select id="selectByPatientNo" resultMap="BaseResultMap" parameterType="java.lang.String">
+  	select *
+	from emr
+	where
+	patient_no=#{patientNo,jdbcType=VARCHAR}
+  </select>
+  <!--计算分页总数-->
+  <select id="totalCount" resultType="java.lang.Integer" parameterType="com.cdutcm.core.page2.Page">
+    select count(*)
+    from emr e left join patient p on e.patient_no=p.patient_no  where 1=1 AND e.doctor_id=#{key3}
+    <if test="key1!=null">
+      AND e.patient_name like CONCAT('%',#{key1,jdbcType=VARCHAR},'%')
+    </if>
+  </select>
+  <!--分页查询-->
+  <select id="pageEmr" resultMap="EmrAndPatientResultMap" parameterType="com.cdutcm.core.page2.Page">
+    select e.id as eid,e.patient_no as epatient_no,e.disease,e.patient_name,e.doctor_id,e.create_time,e.visit_no,e.doctor_name,
+    p.id as pid,p.name,p.sex,p.birthday,p.address,p.telephone,p.status
+    from emr e left join patient p on e.patient_no=p.patient_no  where 1=1 AND e.doctor_id=#{keyWord_3}
+    <if test="keyWord_1!=null">
+      AND e.patient_name like CONCAT('%',#{keyWord_1,jdbcType=VARCHAR},'%')
+    </if>
+    limit #{firstIndex},#{pageSize}
+  </select>
+  <select id="countDisease" resultMap="CounterResultMap" parameterType="java.lang.String">
+    select e.disease,count(*) counter from emr e where  e.doctor_id=#{userId} group by e.disease  order by counter desc
+  </select>
+</mapper>

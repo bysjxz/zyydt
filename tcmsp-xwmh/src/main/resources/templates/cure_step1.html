@@ -1,0 +1,305 @@
+<meta charset="utf-8" />
+<link rel="shortcut icon" href="favicon.ico" />
+<div id="right_content1">
+	<div class="row">
+
+		<div class="col-md-12">
+			<!-- BEGIN SAMPLE TABLE PORTLET-->
+			<div class="portlet light ">
+				<div class="portlet-title">
+					<div class="caption">
+						<span class="caption-subject bold uppercase font-dark">基础信息</span>
+					</div>
+				</div>
+				<div class="portlet-body">
+					<div class="table-scrollable" style="border: 0px solid #e7ecf1">
+						<div class="col-lg-2 col-md-2 col-sm-6 col-xs-12">
+							<div class="mt-card-item">
+								<div class="mt-card-avatar mt-overlay-1">
+									<img src="${request.contextPath}/img/huatuo.jpg" width="100"
+										height="100">
+								</div>
+							</div>
+						</div>
+
+						<div class="col-lg-10 col-md-10 col-sm-10 col-xs-12">
+							<div class="row static-info">
+								<div class="col-md-4 name">姓&emsp;&emsp;名：${patient.name}</div>
+								<div class="col-md-4 name">年&emsp;&emsp;龄：${@com.cdutcm.core.util.DateUtil.getAge(patient.birthday)}</div>
+								<div class="col-md-4 name">性&emsp;&emsp;别：${patient.sex}</div>
+							</div>
+							<div class="row static-info">
+								<div class="col-md-4 name">身&emsp;&emsp;高：${patient.height}</div>
+								<div class="col-md-4 name">体&emsp;&emsp;重：${patient.weight}</div>
+							</div>
+							<div class="row static-info">
+								<div class="col-md-4 name">就诊时间：${patient.patientNo}</div>
+								<div class="col-md-8 name">联系方式： ${patient.telephone}</div>
+							</div>
+							<div class="row static-info">
+								<div class="col-md-12 name">联系地址： ${patient.address}</div>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+			<!-- END SAMPLE TABLE PORTLET-->
+		</div>
+
+	</div>
+
+	<div class="row">
+
+		<div class="col-md-12">
+			<!-- BEGIN SAMPLE TABLE PORTLET-->
+			<div class="portlet light ">
+
+				<form action="${request.contextPath}/treatment/case" method="post"
+					id="form1">
+					<!-- 病人信息 -->
+					<input type="hidden" id="visitNo" name="visitNo" value="${patient.visitNo}">
+					<input type="hidden" id="patientNo" name="patientNo" value="${patient.patientNo}">
+					<input type="hidden" id="patientName" name="patientName" value="${patient.name}">
+					<div class="portlet-title">
+						<div class="caption">
+							<span class="caption-subject bold uppercase font-dark">病历信息</span>
+						</div>
+					</div>
+					<div class="portlet-body">
+						<div class="row">
+							<div class="col-md-1">
+								<div class="easy-pie-chart">
+									<a class="title" href="javascript:;"> 病&emsp;史 </a>
+								</div>
+							</div>
+							<div class="margin-bottom-4  "></div>
+							<div class="col-md-10">
+								<div
+									class="form-group form-md-line-input form-md-floating-label">
+									<input type="text" required="required"  name="bs" autocomplete="off"
+										class="form-control" id="bs">
+									<!-- 	<input type="text" class="form-control" id="form_control_1">
+											<input type="text" class="form-control" id="form_control_1"> -->
+								</div>
+							</div>
+						</div>
+					</div>
+					<div class="portlet-body">
+						<div class="row">
+							<div class="col-md-1">
+								<div class="easy-pie-chart">
+									<a class="title" href="javascript:;">主&emsp;诉 </a>
+								</div>
+							</div>
+							<div class="margin-bottom-4 visible-sm"></div>
+							<div class="col-md-10">
+								<div
+									class="form-group form-md-line-input form-md-floating-label">
+									<input type="text" required="required" name="chiefComplaint" autocomplete="off"
+										class="form-control" id="chiefComplaint">
+								</div>
+							</div>
+						</div>
+					</div>
+					<div class="portlet-body">
+						<div class="row">
+							<div class="col-md-1">
+								<div class="easy-pie-chart">
+									<a class="title" href="javascript:;"> 症&emsp;状 </a>
+								</div>
+							</div>
+							<div class="margin-bottom-4 visible-sm"></div>
+							<div class="col-md-10">
+								<div
+									class="form-group form-md-line-input form-md-floating-label">
+									<input type="text" required="required" name="symptom" autocomplete="off"
+										class="form-control" id="symptom">
+								</div>
+								<!-- 	<div class="col-md-2">
+											<input type="text" class="form-control" id="inputWarning">
+										</div>
+										<div class="col-md-2">
+											<input type="text" class="form-control" id="inputWarning">
+										</div>
+										<div class="col-md-2">
+											<input type="text" class="form-control" id="inputWarning">
+										</div> -->
+
+							</div>
+						</div>
+					</div>
+					<div class="portlet-body">
+						<div class="row">
+							<div class="col-md-1">
+								<div class="easy-pie-chart">
+									<a class="title" href="javascript:;"> 诊&emsp;断 </a>
+								</div>
+							</div>
+							<div class="margin-bottom-4 visible-sm"></div>
+							<div class="col-md-10">
+								<div
+									class="form-group form-md-line-input form-md-floating-label">
+									<input type="text" required="required" name="disease" autocomplete="off"
+										class="form-control" id="disease">
+								</div>
+							</div>
+						</div>
+						<div class="form-actions">
+							<input type="submit" id="sub" class="btn blue" value="下一步" style="width:150px;margin:10px 10px 0 830px" />
+						</div>
+					</div>
+				</form>
+			</div>
+		</div>
+	</div>
+</div>
+<div class="quick-nav-overlay"></div>
+<script type="text/javascript" src="/js/jquery.form.js"></script>
+<script>
+
+$(function(){
+		if($("#patientNo").val()==localStorage.getItem("patientNo")){
+			var bs = localStorage.getItem("bs");
+			if(bs!=""||bs!=null){
+ 				$("input[name=bs]").val(bs);
+ 				localStorage.removeItem("bs");
+				} 
+				
+			var chiefComplaint = localStorage.getItem("chiefComplaint");
+			if(chiefComplaint!=""||chiefComplaint!=null){
+ 				$("input[name=chiefComplaint]").val(chiefComplaint);
+ 				localStorage.removeItem("chiefComplaint");
+				} 
+				
+			var symptom = localStorage.getItem("symptom");
+			if(symptom!=""||symptom!=null){
+ 				$("input[name=symptom]").val(symptom);
+ 				localStorage.removeItem("symptom");
+				} 
+				
+			var disease = localStorage.getItem("disease");
+			if(disease!=""||disease!=null){
+ 				$("input[name=disease]").val(disease);
+ 				localStorage.removeItem("disease");
+				} 
+				}
+		});
+	
+	 	$("#sub").click(function(){
+				var visitNo=$("#visitNo").val();
+				var patientNo=$("#patientNo").val();
+				var patientName=$("#patientName").val();
+				var chiefComplaint=$("#chiefComplaint").val();//主诉
+				var symptom=$("#symptom").val();//症状
+				var disease=$("#disease").val();//诊断
+				var bs = $("#bs").val();//病史
+				if(disease==""||disease==null){
+					alter("请输入诊断结果")
+				}
+				<!--使用localStorage本地存储信息，返回时显示-->
+				localStorage.setItem("visitNo", visitNo);
+				localStorage.setItem("patientNo", patientNo);
+				localStorage.setItem("patientName", patientName);
+				localStorage.setItem("chiefComplaint", chiefComplaint);
+				localStorage.setItem("symptom", symptom);
+				localStorage.setItem("disease", disease);
+				localStorage.setItem("bs", bs);
+				
+			$.ajax({ 
+				type: 'post', 
+           		 url: contextPath+'/treatment/case', 
+                 data: {
+               	 	visitNo: visitNo,
+               		patientNo: patientNo,
+               	 	patientName: patientName,
+                	chiefComplaint: chiefComplaint,
+                	symptom: symptom,
+                	disease: disease,
+                	bs: bs                
+            },
+            success: function(data) {        
+				 	$("#right_content1").html(data) 
+           		 }
+             });
+            return false;
+						
+			});     
+		
+</script>
+</body>
+
+<style>
+body {
+	background-color: #5C9BD1;
+}
+
+.static-info .name {
+	font-size: 16px;
+}
+
+.page-sidebar .page-sidebar-menu>li.active.open>a, .page-sidebar .page-sidebar-menu>li.active>a,
+	.page-sidebar-closed.page-sidebar-fixed .page-sidebar:hover .page-sidebar-menu>li.active.open>a,
+	.page-sidebar-closed.page-sidebar-fixed .page-sidebar:hover .page-sidebar-menu>li.active>a
+	{
+	background: #5C9BD1;
+	color: #fff;
+}
+
+.page-sidebar, .page-sidebar-closed.page-sidebar-fixed .page-sidebar:hover
+	{
+	background-color: #5C9BD1;
+}
+
+li a {
+	color: white;
+	font-size: 16px;
+}
+
+.profile-userpic img {
+	float: none;
+	margin: 0 auto;
+	width: 50%;
+	height: 50%;
+	-webkit-border-radius: 50% !important;
+	-moz-border-radius: 50% !important;
+	border-radius: 50% !important;
+}
+
+.page-header.navbar .page-logo {
+	background: #74AFE7;
+}
+
+.form-group.form-md-line-input {
+	position: relative;
+	margin: 0 0 7px;
+	padding-top: 2px;
+}
+.btn
+.blue
+:not
+ 
+(
+.btn-outline
+ 
+)
+{
+color: #FFF;
+background-color: #3598dc;
+border-color: #3598dc;
+margin-left: 903px;
+}
+.btn
+:not
+ 
+(
+.btn-sm
+ 
+) :not
+ 
+(.btn-lg)
+{
+	line-height: 1.6;
+	width: 138px;
+}
+</style>
+</html>

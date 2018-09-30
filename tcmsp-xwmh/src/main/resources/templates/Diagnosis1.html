@@ -1,0 +1,665 @@
+<meta charset="utf-8" />
+<!--<script src="js/sliber.js"/>-->
+<div class="col-md-12" style="padding:0;">
+	<div class="portlet light " style="overflow:hidden">
+		<div class="portlet-title">
+			<div class="caption">
+				<span class="caption-subject bold uppercase font-dark">敏化治疗</span>
+			</div>
+		</div>
+		<div class="btn-group">
+			<button type="button" class="btn btn-default btn-xs" id="hahahaha">穴位电阻图</button>
+			<button type="button" class="btn btn-default dropdown-toggle btn-xs"
+				data-toggle="dropdown" id="hahahaha2">
+				<span class="caret"></span> <span class="sr-only"></span>
+			</button>
+			<ul class="dropdown-menu" role="menu">
+				<li><a id="xixixixi" href="#">穴位温度图</a></li>
+			</ul>
+		</div>
+
+		<div id="container4"
+			style="min-width:400px;height:400px;border:rgba(207, 202, 202, 0.911) 2px solid;margin-top:20px;"></div>
+		<div id="container5"
+			style="overflow:hidden;min-width:400px;height:400px;border:rgba(207, 202, 202, 0.911) 2px solid;margin-top:20px;display:none"></div>
+		<div>
+			<table id="errTable1">
+				<tr>
+					<td><font color="#0099ff">检测提示:</font></td>
+					<td></td>
+					<td></td>
+					<td></td>
+					<td></td>
+					<td></td>
+				</tr>
+			</table>
+		</div>
+		<div style="margin-top:20px;">
+			<button type="button" class="btn blue btn-square todo-bold"
+				style="width:150px;float:right;" data-toggle="modal"
+				>下一步</button>
+			<button type="button" class="btn"
+				style="width:150px;float:right; margin-right:20px;border:1.5px solid #217ebd;color:#217ebd">上一步</button>
+		</div>
+	</div>
+</div>
+<!-- <div id="mask">
+	 <div id="selectScore"></div>
+</div>
+<div id="windowsB" style="display: none">弹出层</div> -->
+<!-- <div id="container" style="min-width:400px;height:400px"></div> -->
+<script>
+  /*   function nextXw2() {
+        $("#mask").show();
+        $("#selectScore").load("${request.contextPath}/loadSelectScore")
+    } */
+	$(document).ready(function() {
+	loadChart4();
+	loadChart5();
+	if(""==${s1list}) {
+		$('#hahahaha2').attr('disabled',"false");
+		$("#hahahaha").html("穴位温度图");
+		$("#container4").css("display", "none");
+		$("#container5").css("display", "block");
+		}
+	if(""==${s2list}) {
+		$('#hahahaha2').attr('disabled',"false");
+		$("#hahahaha").html("穴位电阻图");
+		$("#container5").css("display", "none");
+		$("#container4").css("display", "block");
+	}
+		
+		$("#xixixixi").click(function() {
+			$(".sr-only").text($("#hahahaha").html());
+			//console.log($("#hahahaha").html());
+			$("#hahahaha").html($("#xixixixi").html());
+			//console.log($("#xixixixi").html());
+			$("#xixixixi").text($(".sr-only").html());
+			//console.log($(".sr-only").html());
+			if ($("#hahahaha").html() == "穴位温度图") {
+				//loadChart2();
+				$("#container4").css("display", "none");
+				$("#container5").css("display", "block");
+			}
+			if ($("#hahahaha").html() == "穴位电阻图") {
+				//loadChart();
+
+				$("#container5").css("display", "none");
+				$("#container4").css("display", "block");
+			}
+		});
+	});
+		/* $(document).ready(function() {
+		var time = (new Date()).getTime();
+		console.log(time);
+		   var title = {
+		       text: '敏化检测'   
+		   }; //标题 
+		   var subtitle = {
+		        text: '穴位电流图'
+		   };//副标题
+		   
+		   var xAxis = {
+		       type: time
+		   }; //x轴横坐标
+		   var yAxis = {
+		    tickPositions: [0, 25, 50,75, 100,125,150], // 指定竖轴坐标点的值
+		      title: {
+		         text: '电流值'
+		      },
+		      plotLines: [{        
+		         value: 0,
+		         width: 1,
+		         color: '#808080'
+		      }]
+		   };   
+ 
+		   var tooltip = {
+		      valueSuffix: 'mA'
+		   }
+ 
+		   var legend = {
+		      layout: 'vertical',
+		      align: 'right',
+		      verticalAlign: 'middle',
+		      borderWidth: 0
+		   };
+		   
+ 
+		   var series =  [
+		      {
+		         name: '四白',
+		         data: [42, 34, 75, 135, 112, 89, 123,
+		            125, 81    , 88, 110, 128]
+		      },
+		      {
+		         name: 'sss',
+		         data: [25, 26, 28, 92, 44, 11, 55,
+		            88, 77    , 55, 11, 44]
+		      } ,
+		     
+		   ];
+ 
+		   var json = {};
+ 
+		   json.title = title;
+		   json.subtitle = subtitle;
+		   json.xAxis = xAxis;
+		   json.yAxis = yAxis;
+		   json.tooltip = tooltip;
+		   json.legend = legend;
+		   json.series = series;
+ 
+		   $('#container').highcharts(json);
+		}); */
+
+
+
+	//电阻图表
+	function loadChart4() {
+		function emitLegendItemClick(me) {
+			var container = me.chart.container;
+			var legenedItemIndex = me.index;
+			if (container.curr_index == "undefined") {
+				for (var i = 0; i < me.chart.series.length; i++) {
+					if (i != legenedItemIndex) {
+						me.chart.series[i].setVisible(false, false);
+					}
+				}
+				container.curr_index = legenedItemIndex;
+				return false;
+			} else if ((container.curr_index == 0 || container.curr_index) && container.curr_index == legenedItemIndex) {
+				for (var i = 0; i < me.chart.series.length; i++) {
+					if (i != legenedItemIndex) {
+						var visible = !me.chart.series[i].visible;
+						me.chart.series[i].setVisible(visible, false);
+					}
+				}
+				return false;
+			} else {
+				var curr_series = me.chart.series[legenedItemIndex];
+				for (var i = 0; i < me.chart.series.length; i++) {
+					if (i != legenedItemIndex) {
+						me.chart.series[i].setVisible(false, false);
+					}
+				}
+				container.curr_index = legenedItemIndex;
+				if (curr_series.visible) {
+					return false;
+				} else {
+					return true;
+				}
+			}
+		}
+		;
+		Highcharts.setOptions({
+			global : {
+				useUTC : false
+			},
+			colors : [ '#058DC7', '#50B432', '#DDDF00', '#ED561B', '#24CBE5', '#90ed7d' ]
+		});
+		function activeLastPointToolip(chart) {
+		}
+		//var myWidth = $('#container5').css('width').slice(0,-2);
+		var chart = Highcharts.chart('container4', {
+			chart : {
+				type : 'spline',
+				//width: myWidth,
+				marginRight : 10,
+				events : {
+					load : function() {
+						var series = this.series,
+							chart = this;
+							//alert(series[1].name);
+						activeLastPointToolip(chart);
+						var yMax=new Array();
+						var yMin=new Array();
+						setInterval(function() {
+							var x = (new Date()).getTime(), // 当前时间
+								data=new Date(),
+								y = Math.random() * 100; // 随机值
+							 /*  if(""==($("#errTable1 tr:eq(1) td:eq(2)").html())){
+									if(y>=90) {
+										yMax=y;
+										     $("#errTable1 tr:eq(1) td:eq(2)").html(data.getHours()+":"+data.getMinutes()+":"+data.getSeconds()+":"+"电阻异常："+"<font color=red>"+yMax.toFixed(2)+"(KΩ)"+"</font><br/>");
+									}
+								}else {
+									if(y>yMax){
+										yMax=y;
+										$("#errTable1 tr:eq(1) td:eq(2)").html(new Date(x).toLocaleString()+"电阻异常："+"<font color=red>"+y.toFixed(2)+"(KΩ)"+"</font><br/>");
+									}	
+								}
+								if(""==($("#errTable1 tr:eq(1) td:eq(3)").html())){
+									if(y<=20) {
+										yMin=y
+										$("#errTable1 tr:eq(1) td:eq(3)").html(new Date(x).toLocaleString()+"电阻异常："+"<font color=red>"+yMin.toFixed(2)+"(KΩ)"+"</font><br/>");
+									}
+								}else {
+									if(y<yMin){
+										yMin=y;
+										$("#errTable1 tr:eq(1) td:eq(3)").html(new Date(x).toLocaleString()+"电阻异常："+"<font color=red>"+y.toFixed(2)+"(KΩ)"+"</font><br/>");
+									}	
+								}   */
+								//alert(1==$("#errTable1 tr").length); 
+							for (var i = 0; i < series.length; i++) {	
+								series[i].addPoint([ x, y ], true, true);
+								//判断是否有足够行存放异常
+								if($("#errTable1 tr").length<=i) {
+									if((y>90||y<20)&&i>0) {
+										addTableRows1();
+									}
+								}
+								//table行里显示异常
+								if($("#errTable1 tr").length>i){
+								//alert($("#errTable1 tr:eq(i) td:eq(2)").html());
+								
+							   if(""==($("#errTable1 tr:eq("+i+") td:eq(2)").html())){
+									if(y>=90) {
+										yMax[i]=y;
+										$("#errTable1 tr:eq("+i+") td:eq(1)").html("<font color='#0099ff'>"+series[i].name+"</font>");
+										$("#errTable1 tr:eq("+i+") td:eq(2)").html(data.getHours()+":"+data.getMinutes()+":"+data.getSeconds()+" "+"电阻异常："+"<font color=red>"+yMax[i].toFixed(2)+"(KΩ)"+"</font><br/>");
+									}
+								}else {
+									if(y>yMax[i]){
+										yMax[i]=y;
+										$("#errTable1 tr:eq("+i+") td:eq(2)").html(data.getHours()+":"+data.getMinutes()+":"+data.getSeconds()+" "+"电阻异常："+"<font color=red>"+yMax[i].toFixed(2)+"(KΩ)"+"</font><br/>");
+									}	
+								}
+								if(""==($("#errTable1 tr:eq("+i+") td:eq(3)").html())){
+									if(y<=20) {
+										yMin[i]=y;
+										$("#errTable1 tr:eq("+i+") td:eq(1)").html("<font color='#0099ff'>"+series[i].name+"</font>");
+										$("#errTable1 tr:eq("+i+") td:eq(3)").html(data.getHours()+":"+data.getMinutes()+":"+data.getSeconds()+" "+"电阻异常："+"<font color=red>"+yMin[i].toFixed(2)+"(KΩ)"+"</font><br/>");
+									}
+								}else {
+									if(y<yMin[i]){
+										yMin[i]=y;
+										$("#errTable1 tr:eq("+i+") td:eq(3)").html(data.getHours()+":"+data.getMinutes()+":"+data.getSeconds()+" "+"电阻异常："+"<font color=red>"+yMin[i].toFixed(2)+"(KΩ)"+"</font><br/>");
+									}	
+								}
+								
+								} 
+							}
+							activeLastPointToolip(chart);
+						}, 550);
+					},
+				}
+			},
+			title : {
+				text : '穴位电阻图'
+			},
+			xAxis : {
+				type : 'datetime',
+				tickPixelInterval : 150
+			},
+			yAxis : {
+				title : {
+					text : '电阻值(kΩ)'
+				}
+			},
+			tooltip : {
+				formatter : function() {
+					return '<b>' + this.series.name + '</b><br/>' +
+						'<b>' + Highcharts.numberFormat(this.y, 2) + '</b>' + '<br/>' +
+						Highcharts.dateFormat('%Y-%m-%d %H:%M:%S', this.x);
+				},
+			},
+			legend : {
+				navigation : {
+					enabled : false
+				}
+			},
+			series : create()
+		});
+		//添加series
+		function create() {
+			//series元素，可从后台获取
+			//var seriesArray = new Array("四白", "关元", "迎春");
+			//alert(seriesArray.length);
+			var series = new Array();
+			alert(${s1list});
+			var result = ${s1list};
+		
+					//alert(result);
+					//alert(result.length);
+					//alert(result[0]);
+					for (var i = 0; i < result.length; i++) {
+						if (i == 0) {
+							series.push({
+								"name" : result[i],
+								"data" : numRam(),
+								"events" : {
+									"legendItemClick" : function(e) {
+										return emitLegendItemClick(this);
+									}
+								},
+								//设置值的范围
+								"zones" : [
+									{
+										"value" : 20,
+										"color" : "#ba241d"
+									}, {
+										"value" : 90,
+									}, {
+										"color" : "#ba241d"
+									},
+								]
+							});
+						} else {
+							series.push({
+								"name" : result[i],
+								"data" : numRam(),
+								"visible" : false,
+								"events" : {
+									"legendItemClick" : function(e) {
+										return emitLegendItemClick(this);
+									}
+								},
+								"zones" : [
+									{
+										"value" : 20,
+										"color" : "#ba241d"
+									}, {
+										"value" : 90,
+									}, {
+										"color" : "#ba241d"
+									},
+								]
+							});
+						}
+					}
+								//alert(series);return series;
+		
+	//alert(series);
+	return series;
+		}
+
+
+		//随机函数
+		function numRam() {
+			var data = [],
+				time = (new Date()).getTime(),
+				i;
+			for (i = -19; i <= 0; i += 1) {
+				data.push({
+					x : time + i * 1000,
+					y : 0
+				});
+			}
+			return data;
+		}
+
+	}
+	//温度图表
+	function loadChart5() {
+		function emitLegendItemClick(me) {
+			var container = me.chart.container;
+			var legenedItemIndex = me.index;
+			if (container.curr_index == "undefined") {
+				for (var i = 0; i < me.chart.series.length; i++) {
+					if (i != legenedItemIndex) {
+						me.chart.series[i].setVisible(false, false);
+					}
+				}
+				container.curr_index = legenedItemIndex;
+				return false;
+			} else if ((container.curr_index == 0 || container.curr_index) && container.curr_index == legenedItemIndex) {
+				for (var i = 0; i < me.chart.series.length; i++) {
+					if (i != legenedItemIndex) {
+						var visible = !me.chart.series[i].visible;
+						me.chart.series[i].setVisible(visible, false);
+					}
+				}
+				return false;
+			} else {
+				var curr_series = me.chart.series[legenedItemIndex];
+				for (var i = 0; i < me.chart.series.length; i++) {
+					if (i != legenedItemIndex) {
+						me.chart.series[i].setVisible(false, false);
+					}
+				}
+				container.curr_index = legenedItemIndex;
+				if (curr_series.visible) {
+					return false;
+				} else {
+					return true;
+				}
+			}
+		}
+		;
+		Highcharts.setOptions({
+			global : {
+				useUTC : false
+			},
+			colors : [ '#058DC7', '#50B432', '#DDDF00', '#ED561B', '#24CBE5', '#90ed7d' ]
+		});
+		function activeLastPointToolip(chart) {
+		}
+		 var myWidth = $('#container4').css('width').slice(0,-2);
+		var chart = Highcharts.chart('container5', {
+			chart : {
+				type : 'spline',
+				width:myWidth,
+				marginRight : 10,
+				events : {
+					load : function() {
+						var series = this.series,
+							chart = this;
+							var yMax=new Array();
+						var yMin=new Array();
+						activeLastPointToolip(chart);
+						setInterval(function() {
+							var x = (new Date()).getTime(), // 当前时间
+							 data=new Date(),
+								y = Math.random() * 100; // 随机值
+							for (var i = 0; i < series.length; i++) {
+								series[i].addPoint([ x, y ], true, true);
+								//判断是否有足够行存放异常
+								if($("#errTable1 tr").length<=i) {
+									if((y>90||y<20)&&i>0) {
+										addTableRows1();
+									}
+								}
+								//table行里显示异常
+								if($("#errTable1 tr").length>i){
+								//alert($("#errTable1 tr:eq(i) td:eq(2)").html());
+								
+							   if(""==($("#errTable1 tr:eq("+i+") td:eq(4)").html())){
+									if(y>=90) {
+										yMax[i]=y;
+										$("#errTable1 tr:eq("+i+") td:eq(1)").html("<font color='#0099ff'>"+series[i].name+"</font>");
+										$("#errTable1 tr:eq("+i+") td:eq(4)").html(data.getHours()+":"+data.getMinutes()+":"+data.getSeconds()+" "+"温度异常："+"<font color=red>"+yMax[i].toFixed(2)+"(℃)"+"</font><br/>");
+									}
+								}else {
+									if(y>yMax[i]){
+										yMax[i]=y;
+										$("#errTable1 tr:eq("+i+") td:eq(4)").html(data.getHours()+":"+data.getMinutes()+":"+data.getSeconds()+" "+"温度异常："+"<font color=red>"+yMax[i].toFixed(2)+"(℃)"+"</font><br/>");
+									}	
+								}
+								if(""==($("#errTable1 tr:eq("+i+") td:eq(5)").html())){
+									if(y<=20) {
+										yMin[i]=y;
+										$("#errTable1 tr:eq("+i+") td:eq(1)").html("<font color='#0099ff'>"+series[i].name+"</font>");
+										$("#errTable1 tr:eq("+i+") td:eq(5)").html(data.getHours()+":"+data.getMinutes()+":"+data.getSeconds()+" "+"温度异常："+"<font color=red>"+yMin[i].toFixed(2)+"(℃)"+"</font><br/>");
+									}
+								}else {
+									if(y<yMin[i]){
+										yMin[i]=y;
+										$("#errTable1 tr:eq("+i+") td:eq(5)").html(data.getHours()+":"+data.getMinutes()+":"+data.getSeconds()+" "+"温度异常："+"<font color=red>"+yMin[i].toFixed(2)+"(℃)"+"</font><br/>");
+									}	
+								}
+								
+								} 
+							}
+							activeLastPointToolip(chart);
+						}, 550);
+					},
+				}
+			},
+			title : {
+				text : '穴位温度图'
+			},
+			xAxis : {
+				type : 'datetime',
+				tickPixelInterval : 150
+			},
+			yAxis : {
+				title : {
+					text : '温度值(℃)'
+				}
+			},
+			tooltip : {
+				formatter : function() {
+					return '<b>' + this.series.name + '</b><br/>' +
+						'<b>' + Highcharts.numberFormat(this.y, 2) + '</b>' + '<br/>' +
+						Highcharts.dateFormat('%Y-%m-%d %H:%M:%S', this.x);
+				},
+			},
+			legend : {
+				navigation : {
+					enabled : false
+				}
+			},
+			series : create()
+		});
+		//添加series
+		function create() {
+			//series元素，可从后台获取
+			//var seriesArray = new Array("四白", "关元", "迎春");
+			//alert(seriesArray.length);
+			var series = new Array();
+			alert(${s2list});
+			var result = ${s2list};
+		
+					//alert(result);
+					//alert(result.length);
+					//alert(result[0]);
+					for (var i = 0; i < result.length; i++) {
+						if (i == 0) {
+							series.push({
+								"name" : result[i],
+								"data" : numRam(),
+								"events" : {
+									"legendItemClick" : function(e) {
+										return emitLegendItemClick(this);
+									}
+								},
+								//设置值的范围
+								"zones" : [
+									{
+										"value" : 20,
+										"color" : "#ba241d"
+									}, {
+										"value" : 90,
+									}, {
+										"color" : "#ba241d"
+									},
+								]
+							});
+						} else {
+							series.push({
+								"name" : result[i],
+								"data" : numRam(),
+								"visible" : false,
+								"events" : {
+									"legendItemClick" : function(e) {
+										return emitLegendItemClick(this);
+									}
+								},
+								"zones" : [
+									{
+										"value" : 20,
+										"color" : "#ba241d"
+									}, {
+										"value" : 90,
+									}, {
+										"color" : "#ba241d"
+									},
+								]
+							});
+						}
+					}
+								//alert(series);return series;
+		
+	//alert(series);
+	return series;
+		}
+
+		//随机函数
+		function numRam() {
+			var data = [],
+				time = (new Date()).getTime(),
+				i;
+			for (i = -19; i <= 0; i += 1) {
+				data.push({
+					x : time + i * 1000,
+					y : 0
+				});
+			}
+			return data;
+		}
+
+	}
+	//增加table行
+	function addTableRows1(){
+		var tables = $("#errTable1");
+			var tr = $("<tr>" +
+				"<td></td>" +
+				"<td></td>" +
+				"<td></td>" +
+				"<td></td>" +
+				"<td></td>" +
+				"<td></td>" +
+				"</tr>");
+			tr.appendTo(tables);
+	}
+</script>
+<style>
+	#mask{
+		position: absolute;
+		z-index: 9998;
+		top: 0;
+		left: 0;
+		/*background-color: rgba(0,0,0,0.3);*/
+		/*background-color: red;*/
+		height: 100%;
+		width: 100%;
+		display:none;
+		justify-content:center;
+		align-items:center;
+	}
+.btn-group {
+	position: absolute;
+	top: 70px;
+	left: 20px;
+	z-index: 2;
+}
+
+#hahahaha {
+	color: #7fb3e6;
+	border: 1px solid #7fb3e6;
+	background-color: white;
+	border-radius: 0;
+}
+
+#hahahaha2 {
+	color: #7fb3e6;
+	border: 1px solid #7fb3e6;
+	background-color: white;
+	border-radius: 0;
+}
+
+	#selectScore{
+		margin: 0 auto;
+		width: 50%;
+		height: 50%;
+		background: #9F9F9F;
+	}
+
+
+table {
+	border-collapse: separate;
+	border-spacing: 20px;
+}
+
+</style>

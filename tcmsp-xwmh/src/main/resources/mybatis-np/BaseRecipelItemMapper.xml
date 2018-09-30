@@ -1,0 +1,272 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.cdutcm.tcms.biz.mapper.BaseRecipelItemMapper" >
+  <resultMap id="BaseResultMap" type="com.cdutcm.tcms.biz.model.BaseRecipelItem" >
+    <id column="id" property="id" jdbcType="BIGINT" />
+    <result column="recipel_id" property="recipelId" jdbcType="BIGINT" />
+    <result column="name" property="name" jdbcType="VARCHAR" />
+    <result column="ctype" property="ctype" jdbcType="VARCHAR" />
+    <result column="m_order" property="mOrder" jdbcType="INTEGER" />
+    <result column="time" property="time" jdbcType="VARCHAR" />
+    <result column="lastupdate" property="lastupdate" jdbcType="TIMESTAMP" />
+    <result column="zz_method" property="zzMethod" jdbcType="VARCHAR" />
+    <result column="freq" property="freq" jdbcType="VARCHAR" />
+    <result column="strength" property="strength" jdbcType="VARCHAR" />
+    <result column="bx" property="bx" jdbcType="VARCHAR" />
+    <result column="jd" property="jd" jdbcType="VARCHAR" />
+    <result column="sd" property="sd" jdbcType="VARCHAR" />
+    <result column="jl" property="jl" jdbcType="VARCHAR" />
+    <result column="type" property="type" jdbcType="VARCHAR" />
+    <result column="gj" property="gj" jdbcType="VARCHAR" />
+    <result column="other_gf" property="otherGf" jdbcType="VARCHAR" />
+    <result column="cxxh" property="cxxh" jdbcType="VARCHAR" />
+    <result column="jz" property="jz" jdbcType="VARCHAR" />
+    <result column="power" property="power" jdbcType="VARCHAR" />
+  </resultMap>
+  <sql id="Base_Column_List" >
+    id, recipel_id, name, ctype, m_order, time, lastupdate, zz_method, freq, strength, 
+    bx, jd, sd, jl, type, gj, other_gf, cxxh, jz, power
+  </sql>
+  <!--通过病名id查询出对应的推荐处方-->
+  <select id="findBaseRecipelItemByRecipelId" resultMap="BaseResultMap" parameterType="java.lang.Long">
+    select
+    <include refid="Base_Column_List" />
+    from base_recipel_item
+    where recipel_id = #{recipelId,jdbcType=BIGINT}
+  </select>
+   <select id="listBRItem" resultMap="BaseResultMap" parameterType="java.lang.Long">
+  select 
+  <include refid="Base_Column_List" />
+    from base_recipel_item
+    where recipel_id = #{recipelId,jdbcType=BIGINT}
+  </select>
+  
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Long" >
+    select 
+    <include refid="Base_Column_List" />
+    from base_recipel_item
+    where id = #{id,jdbcType=BIGINT}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Long" >
+    delete from base_recipel_item
+    where id = #{id,jdbcType=BIGINT}
+  </delete>
+  <insert id="insert" parameterType="com.cdutcm.tcms.biz.model.BaseRecipelItem" >
+    insert into base_recipel_item (id, recipel_id, name, 
+      ctype, m_order, time, 
+      lastupdate, zz_method, freq, 
+      strength, bx, jd, sd, 
+      jl, type, gj, other_gf, 
+      cxxh, jz, power)
+    values (#{id,jdbcType=BIGINT}, #{recipelId,jdbcType=BIGINT}, #{name,jdbcType=VARCHAR}, 
+      #{ctype,jdbcType=VARCHAR}, #{mOrder,jdbcType=INTEGER}, #{time,jdbcType=VARCHAR}, 
+      #{lastupdate,jdbcType=TIMESTAMP}, #{zzMethod,jdbcType=VARCHAR}, #{freq,jdbcType=VARCHAR}, 
+      #{strength,jdbcType=VARCHAR}, #{bx,jdbcType=VARCHAR}, #{jd,jdbcType=VARCHAR}, #{sd,jdbcType=VARCHAR}, 
+      #{jl,jdbcType=VARCHAR}, #{type,jdbcType=VARCHAR}, #{gj,jdbcType=VARCHAR}, #{otherGf,jdbcType=VARCHAR}, 
+      #{cxxh,jdbcType=VARCHAR}, #{jz,jdbcType=VARCHAR}, #{power,jdbcType=VARCHAR})
+  </insert>
+  <insert id="insertSelective" parameterType="com.cdutcm.tcms.biz.model.BaseRecipelItem" >
+    insert into base_recipel_item
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        id,
+      </if>
+      <if test="recipelId != null" >
+        recipel_id,
+      </if>
+      <if test="name != null" >
+        name,
+      </if>
+      <if test="ctype != null" >
+        ctype,
+      </if>
+      <if test="mOrder != null" >
+        m_order,
+      </if>
+      <if test="time != null" >
+        time,
+      </if>
+      <if test="lastupdate != null" >
+        lastupdate,
+      </if>
+      <if test="zzMethod != null" >
+        zz_method,
+      </if>
+      <if test="freq != null" >
+        freq,
+      </if>
+      <if test="strength != null" >
+        strength,
+      </if>
+      <if test="bx != null" >
+        bx,
+      </if>
+      <if test="jd != null" >
+        jd,
+      </if>
+      <if test="sd != null" >
+        sd,
+      </if>
+      <if test="jl != null" >
+        jl,
+      </if>
+      <if test="type != null" >
+        type,
+      </if>
+      <if test="gj != null" >
+        gj,
+      </if>
+      <if test="otherGf != null" >
+        other_gf,
+      </if>
+      <if test="cxxh != null" >
+        cxxh,
+      </if>
+      <if test="jz != null" >
+        jz,
+      </if>
+      <if test="power != null" >
+        power,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        #{id,jdbcType=BIGINT},
+      </if>
+      <if test="recipelId != null" >
+        #{recipelId,jdbcType=BIGINT},
+      </if>
+      <if test="name != null" >
+        #{name,jdbcType=VARCHAR},
+      </if>
+      <if test="ctype != null" >
+        #{ctype,jdbcType=VARCHAR},
+      </if>
+      <if test="mOrder != null" >
+        #{mOrder,jdbcType=INTEGER},
+      </if>
+      <if test="time != null" >
+        #{time,jdbcType=VARCHAR},
+      </if>
+      <if test="lastupdate != null" >
+        #{lastupdate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="zzMethod != null" >
+        #{zzMethod,jdbcType=VARCHAR},
+      </if>
+      <if test="freq != null" >
+        #{freq,jdbcType=VARCHAR},
+      </if>
+      <if test="strength != null" >
+        #{strength,jdbcType=VARCHAR},
+      </if>
+      <if test="bx != null" >
+        #{bx,jdbcType=VARCHAR},
+      </if>
+      <if test="jd != null" >
+        #{jd,jdbcType=VARCHAR},
+      </if>
+      <if test="sd != null" >
+        #{sd,jdbcType=VARCHAR},
+      </if>
+      <if test="jl != null" >
+        #{jl,jdbcType=VARCHAR},
+      </if>
+      <if test="type != null" >
+        #{type,jdbcType=VARCHAR},
+      </if>
+      <if test="gj != null" >
+        #{gj,jdbcType=VARCHAR},
+      </if>
+      <if test="otherGf != null" >
+        #{otherGf,jdbcType=VARCHAR},
+      </if>
+      <if test="cxxh != null" >
+        #{cxxh,jdbcType=VARCHAR},
+      </if>
+      <if test="jz != null" >
+        #{jz,jdbcType=VARCHAR},
+      </if>
+      <if test="power != null" >
+        #{power,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.cdutcm.tcms.biz.model.BaseRecipelItem" >
+    update base_recipel_item
+    <set >
+      <if test="recipelId != null" >
+        recipel_id = #{recipelId,jdbcType=BIGINT},
+      </if>
+      <if test="name != null" >
+        name = #{name,jdbcType=VARCHAR},
+      </if>
+      <if test="ctype != null" >
+        ctype = #{ctype,jdbcType=VARCHAR},
+      </if>
+      <if test="mOrder != null" >
+        m_order = #{mOrder,jdbcType=INTEGER},
+      </if>
+      <if test="time != null" >
+        time = #{time,jdbcType=VARCHAR},
+      </if>
+      <if test="lastupdate != null" >
+        lastupdate = #{lastupdate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="zzMethod != null" >
+        zz_method = #{zzMethod,jdbcType=VARCHAR},
+      </if>
+      <if test="freq != null" >
+        freq = #{freq,jdbcType=VARCHAR},
+      </if>
+      <if test="strength != null" >
+        strength = #{strength,jdbcType=VARCHAR},
+      </if>
+      <if test="bx != null" >
+        bx = #{bx,jdbcType=VARCHAR},
+      </if>
+      <if test="jd != null" >
+        jd = #{jd,jdbcType=VARCHAR},
+      </if>
+      <if test="sd != null" >
+        sd = #{sd,jdbcType=VARCHAR},
+      </if>
+      <if test="jl != null" >
+        jl = #{jl,jdbcType=VARCHAR},
+      </if>
+      <if test="type != null" >
+        type = #{type,jdbcType=VARCHAR},
+      </if>
+      <if test="gj != null" >
+        gj = #{gj,jdbcType=VARCHAR},
+      </if>
+      <if test="otherGf != null" >
+        other_gf = #{otherGf,jdbcType=VARCHAR},
+      </if>
+      <if test="cxxh != null" >
+        cxxh = #{cxxh,jdbcType=VARCHAR},
+      </if>
+      <if test="jz != null" >
+        jz = #{jz,jdbcType=VARCHAR},
+      </if>
+      <if test="power != null" >
+        power = #{power,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where id = #{id,jdbcType=BIGINT}
+  </update>
+  <insert  id="replaceByPrimaryKey" parameterType="com.cdutcm.tcms.biz.model.BaseRecipelItem" >
+   replace into base_recipel_item (id, recipel_id, name, 
+      ctype, m_order, time, 
+      lastupdate, zz_method, freq, 
+      strength, bx, jd, sd, 
+      jl, type, gj, other_gf, 
+      cxxh, jz, power)
+    values (#{id,jdbcType=BIGINT}, #{recipelId,jdbcType=BIGINT}, #{name,jdbcType=VARCHAR}, 
+      #{ctype,jdbcType=VARCHAR}, #{mOrder,jdbcType=INTEGER}, #{time,jdbcType=VARCHAR}, 
+      #{lastupdate,jdbcType=TIMESTAMP}, #{zzMethod,jdbcType=VARCHAR}, #{freq,jdbcType=VARCHAR}, 
+      #{strength,jdbcType=VARCHAR}, #{bx,jdbcType=VARCHAR}, #{jd,jdbcType=VARCHAR}, #{sd,jdbcType=VARCHAR}, 
+      #{jl,jdbcType=VARCHAR}, #{type,jdbcType=VARCHAR}, #{gj,jdbcType=VARCHAR}, #{otherGf,jdbcType=VARCHAR}, 
+      #{cxxh,jdbcType=VARCHAR}, #{jz,jdbcType=VARCHAR}, #{power,jdbcType=VARCHAR})
+  </insert >
+</mapper>

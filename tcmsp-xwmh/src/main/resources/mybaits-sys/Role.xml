@@ -1,0 +1,50 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" 
+	"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.cdutcm.tcms.sys.mapper.RoleMapper">
+
+	<resultMap type="com.cdutcm.tcms.sys.entity.Role" id="roleResultMap">
+		<id column="id" property="roleId" jdbcType="BIGINT"/>
+		<result column="role_name" property="roleName"/>
+		<result column="rights" property="rights"/>
+		<result column="description" property="description"/>
+	</resultMap>
+	
+	<select id="listAllRoles" resultMap="roleResultMap">
+		select * from sys_role
+	</select>
+	<select id="listPageRoles" resultMap="roleResultMap">
+		select * from sys_role
+	</select>
+	<select id="getIdByName"  resultMap="roleResultMap">
+		select * from sys_role where role_name='患者'
+	</select>
+	
+	<select id="getRoleByName" parameterType="long" resultMap="roleResultMap">
+		select * from sys_role where id=#{roleId}
+	</select>
+	<select id="getRoleById" parameterType="long" resultMap="roleResultMap">
+		select * from sys_role where id=#{roleId}
+	</select>
+	
+	<select id="getCountByName" parameterType="com.cdutcm.tcms.sys.entity.Role" resultType="int">
+		select count(id) from sys_role where role_name=#{roleName}
+		<if test="roleId!=null or roleId>0">
+		 and id!=#{roleId}
+		</if>
+	</select>
+	
+	<insert id="insertRole" parameterType="com.cdutcm.tcms.sys.entity.Role" >
+		insert into sys_role (id,rights,description,role_name) values (#{roleId},#{rights},#{description},#{roleName})
+	</insert>
+	
+	<update id="updateRoleBaseInfo" parameterType="com.cdutcm.tcms.sys.entity.Role">
+		update sys_role set role_name=#{roleName},description=#{description}where id=#{roleId}
+	</update>
+	<update id="updateRoleRights" parameterType="com.cdutcm.tcms.sys.entity.Role">
+		update sys_role set rights=#{rights} where id=#{roleId}
+	</update>
+	<delete id="deleteRoleById" parameterType="long">
+		delete from sys_role where id=#{roleId}
+	</delete>
+</mapper>

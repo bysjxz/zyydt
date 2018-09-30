@@ -1,0 +1,1126 @@
+<!DOCTYPE html>
+<html lang="en">
+ 
+<head>
+    <meta charset="utf-8"/>
+    <title>穴位敏化平台</title>
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta content="width=device-width, initial-scale=1" name="viewport"/>
+    <meta content="Preview page of Metronic Admin Theme #2 for statistics, charts, recent events and reports"
+          name="description"/>
+    <meta content="" name="author"/>
+    <!-- BEGIN GLOBAL MANDATORY STYLES -->
+    <link href="http://fonts.googleapis.com/css?family=Open+Sans:400,300,600,700&subset=all" rel="stylesheet"
+          type="text/css"/>
+    <link href="metronic/css/font-awesome.min.css" rel="stylesheet" type="text/css"/>
+    <link href="metronic/css/simple-line-icons.min.css" rel="stylesheet" type="text/css"/>
+    <link href="bootstrap/css/bootstrap.min.css" rel="stylesheet" type="text/css"/>
+    <link href="metronic/css/bootstrap-switch.min.css" rel="stylesheet" type="text/css"/>
+    <!-- END GLOBAL MANDATORY STYLES -->
+    <!-- BEGIN THEME GLOBAL STYLES -->
+    <link href="metronic/css/components.min.css" rel="stylesheet" id="style_components" type="text/css"/>
+    <link href="metronic/css/plugins.min.css" rel="stylesheet" type="text/css"/>
+    <!-- END THEME GLOBAL STYLES -->
+    <!-- BEGIN THEME LAYOUT STYLES -->
+    <link href="metronic/css/layout.min.css" rel="stylesheet" type="text/css"/>
+    <link href="metronic/css/blue.min.css" rel="stylesheet" type="text/css" id="style_color"/>
+    <link href="metronic/css/custom.min.css" rel="stylesheet" type="text/css"/>
+    <link href="layui/css/layui.css" rel="stylesheet" type="text/css"/>
+ 
+    <!-- END THEME LAYOUT STYLES -->
+    <link rel="shortcut icon" href="favicon.ico"/>
+ 
+    <link href="css/nav.css" rel="stylesheet" type="text/css"/>
+ 
+</head>
+<!-- END HEAD -->
+ 
+<body class="page-header-fixed page-sidebar-closed-hide-logo page-container-bg-solid">
+<!-- BEGIN HEADER -->
+<div class="page-header navbar navbar-fixed-top">
+    <!-- BEGIN HEADER INNER -->
+    <div class="page-header-inner ">
+        <!-- BEGIN LOGO -->
+        <div class="page-logo">
+            <h3 class="mt-card-name">ACUPOINT</h3>
+            <p class="mt-card-desc font-grey-mint" style="margin: -10px 0;">SENSITIZATION</p>
+        </div>
+        <!-- END LOGO -->
+        <!-- BEGIN RESPONSIVE MENU TOGGLER -->
+        <a href="javascript:;" class="menu-toggler responsive-toggler" data-toggle="collapse"
+           data-target=".navbar-collapse"> </a>
+        <!-- END RESPONSIVE MENU TOGGLER -->
+        <!-- BEGIN PAGE ACTIONS -->
+        <!-- DOC: Remove "hide" class to enable the page header actions -->
+        <!-- END PAGE ACTIONS -->
+        <!-- BEGIN PAGE TOP -->
+        <div class="page-top">
+            <!-- BEGIN TOP NAVIGATION MENU -->
+            <div class="top-menu">
+                <ul class="nav navbar-nav pull-right">
+                    <!-- BEGIN NOTIFICATION DROPDOWN -->
+                    <!-- DOC: Apply "dropdown-dark" class below "dropdown-extended" to change the dropdown styte -->
+                    <!-- DOC: Apply "dropdown-hoverable" class after below "dropdown" and remove data-toggle="dropdown" data-hover="dropdown" data-close-others="true" attributes to enable hover dropdown mode -->
+                    <!-- DOC: Remove "dropdown-hoverable" and add data-toggle="dropdown" data-hover="dropdown" data-close-others="true" attributes to the below A element with dropdown-toggle class -->
+                    <li class="dropdown dropdown-extended dropdown-notification" id="header_notification_bar">
+                        <a href="javascript:;" class="dropdown-toggle" data-toggle="dropdown" data-hover="dropdown"
+                           data-close-others="true">
+                            <i class="glyphicon glyphicon-bell"></i>
+                            <span class="badge badge-default"> 7 </span>
+                        </a>
+                        <ul class="dropdown-menu">
+                            <li class="external">
+                                <h3>
+                                    <span class="bold">12 pending</span> notifications</h3>
+                                <a href="page_user_profile_1.html">view all</a>
+                            </li>
+                            <li>
+                                <ul class="dropdown-menu-list scroller" style="height: 250px;"
+                                    data-handle-color="#637283">
+                                    <li>
+                                        <a href="javascript:;">
+                                            <span class="time">just now</span>
+                                            <span class="details">
+                                                        <span class="label label-sm label-icon label-success">
+                                                            <i class="fa fa-plus"></i>
+                                                        </span> New user registered. </span>
+                                        </a>
+                                    </li>
+                                    <li>
+                                        <a href="javascript:;">
+                                            <span class="time">3 mins</span>
+                                            <span class="details">
+                                                        <span class="label label-sm label-icon label-danger">
+                                                            <i class="fa fa-bolt"></i>
+                                                        </span> Server #12 overloaded. </span>
+                                        </a>
+                                    </li>
+                                </ul>
+                            </li>
+                        </ul>
+                    </li>
+                    <!-- DOC: Apply "dropdown-dark" class after below "dropdown-extended" to change the dropdown styte -->
+                    <li class="dropdown dropdown-extended ">
+                        <a class="dropdown-toggle">
+                            <span class="sr-only">Toggle Quick Sidebar</span>
+                            <i class="fa fa-power-off" id="logout"></i>
+                        </a>
+                    </li>
+                    <!-- END QUICK SIDEBAR TOGGLER -->
+                </ul>
+            </div>
+            <!-- END TOP NAVIGATION MENU -->
+        </div>
+        <!-- END PAGE TOP -->
+    </div>
+    <!-- END HEADER INNER -->
+</div>
+ 
+<div class="clearfix"></div>
+ 
+<div class="page-container">
+ 
+    <div class="page-sidebar-wrapper">
+ 
+        <div class="page-sidebar navbar-collapse collapse">
+ 
+            <div class="row" style="padding-top: 20px;color:white;">
+                <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+                    <div class="mt-card-item">
+                        <div style="text-align: center;" class="profile-userpic">
+                            <img src="img/huatuo.jpg" width="100" height="100">
+                        </div>
+                        <div class="mt-card-content" style="text-align: center;">
+                            <h3 class="mt-card-name">华佗</h3>
+                            <h5 class="mt-card-name">著名名中医</h5>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="row" style="padding-top: 20px;">
+                <nav>
+                    <ul class="nav sidebar-nav" style="margin-left: 15px;">
+                        <li><a href="${request.contextPath}/personalCenter"> <img src="img/home.png"> 个人中心 </a></li>
+                        <!--<li><a href="#" onclick="toTreatment()"> <img src="img/list.png"> 疾病治疗 </a></li>-->
+                        <li><a href="#" onclick="toMypatient()"> <img src="img/user-group.png"> 患者列表 </a></li>
+                        <li><a href="#" onclick="topatientRecipels()"> <img src="img/books.png"/> 就诊记录</a></li>
+                        <li><a href="#" onclick="toindex()"> <img src="img/info.png"> 个人信息 </a></li>
+                    </ul>
+                </nav>
+            </div>
+            <!-- END SIDEBAR MENU -->
+        </div>
+        <!-- END SIDEBAR -->
+    </div>
+    <!-- END SIDEBAR -->
+    <!-- END PAGE HEADER-->
+    <!-- BEGIN CONTENT -->
+    <div class="page-content-wrapper border-blue-sharp">
+        <!-- BEGIN CONTENT BODY -->
+        <div class="page-content" style="overflow:hidden;">
+            <!-- BEGIN PAGE HEADER-->
+            <div id="right_content">
+                <div class="left">
+                    <div class="col-md-12" style=" background:#fff;padding:20px 30px;">
+                        <ul>
+                            <li>今日诊疗<span>9</span></li>
+                            <li onclick="Skip('预约诊疗')" class="header-bar">预约诊疗<span>${nrs.booking}</span></li>
+                            <li onclick="Skip('待诊')" class="header-bar">待诊<span>${nrs.waiting}</span></li>
+                            <li onclick="Skip('诊疗中')" class="header-bar">诊疗中<span>${nrs.doing}</span></li>
+                        </ul>
+                    </div>
+                    <div class="col-md-12" style="padding:0;margin-top:20px;">
+                        <div class="portlet light ">
+                            <div class="portlet-title">
+                                <div class="caption">
+                                    <span class="caption-subject bold uppercase font-dark">数据统计</span>
+                                </div>
+                                @ for(item in ers){
+                                <input id="disease" hidden name="disease" value="${item.disease}"/>
+                                <input id="counter" hidden name="counter" value="${item.counter}"/>
+                                <!--<div>${item.disease}</div>-->
+                                @}
+                                <div class="actions">
+                                    <a href="#">More</a>
+                                </div>
+                            </div>
+                            <div id="main" style="height: 300px"></div>
+                            <script type="text/javascript"
+                                    src="http://echarts.baidu.com/gallery/vendors/echarts/echarts.min.js"></script>
+                            <script type="text/javascript"
+                                    src="http://echarts.baidu.com/gallery/vendors/echarts-gl/echarts-gl.min.js"></script>
+                            <script type="text/javascript"
+                                    src="http://echarts.baidu.com/gallery/vendors/echarts-stat/ecStat.min.js"></script>
+                            <script type="text/javascript"
+                                    src="http://echarts.baidu.com/gallery/vendors/echarts/extension/dataTool.min.js"></script>
+                            <script type="text/javascript"
+                                    src="http://echarts.baidu.com/gallery/vendors/echarts/map/js/china.js"></script>
+                            <script type="text/javascript"
+                                    src="http://echarts.baidu.com/gallery/vendors/echarts/map/js/world.js"></script>
+                            <script type="text/javascript"
+                                    src="http://api.map.baidu.com/api?v=2.0&ak=ZUONbpqGBsYGXNIYHicvbAbM"></script>
+                            <script type="text/javascript"
+                                    src="http://echarts.baidu.com/gallery/vendors/echarts/extension/bmap.min.js"></script>
+                            <script type="text/javascript"
+                                    src="http://echarts.baidu.com/gallery/vendors/simplex.js"></script>
+                            <div id="lgtb">
+                                <div class="lgtb-item">
+                                    <div id="container1" style="height: 250px;width: 400px"></div>
+                                    <script type="text/javascript">
+                                        var dom = document.getElementById("container1");
+                                        var myChart = echarts.init(dom);
+                                        var app = {};
+                                        option = null;
+                                        option = {
+                                            xAxis: {
+                                                name: '电阻',
+                                                type: 'category',
+                                                data: [1, 5, 6, 9, 10, 11, 20]
+                                            },
+                                            yAxis: {
+                                                name: '温度',
+                                                type: 'value',
+                                                axisLabel: {
+                                                    formatter: '{value}℃'
+                                                },
+                                            },
+                                            series: [{
+                                                data: [10, 20, 30, 32, 36, 38, 28],
+                                                type: 'line',
+                                                smooth: true
+                                            }]
+                                        };
+                                        ;
+                                        if (option && typeof option === "object") {
+                                            myChart.setOption(option, true);
+                                        }
+                                    </script>
+                                </div>
+                                <div class="lgtb-item">
+                                    <div id="container2" style="height: 250px;width: 400px"></div>
+                                    <script type="text/javascript">
+                                        var dom = document.getElementById("container2");
+                                        var myChart = echarts.init(dom);
+                                        var app = {};
+                                        option = null;
+                                        option = {
+                                            xAxis: {
+                                                name: '针刺',
+                                                type: 'category',
+                                                data: [1, 5, 6, 9, 10, 11, 20]
+                                            },
+                                            yAxis: {
+                                                name: '温度',
+                                                type: 'value',
+                                                axisLabel: {
+                                                    formatter: '{value}℃'
+                                                },
+                                            },
+                                            series: [{
+                                                data: [36, 20, 25, 32, 36, 38, 28],
+                                                type: 'line',
+                                                smooth: true
+                                            }]
+                                        };
+                                        ;
+                                        if (option && typeof option === "object") {
+                                            myChart.setOption(option, true);
+                                        }
+                                    </script>
+                                </div>
+                            </div>
+                            <style>
+                                #lgtb {
+                                    width: 100%;
+                                    height: 300px;
+                                    display: flex;
+                                }
+ 
+                                .lgtb-item {
+                                    flex: 1;
+                                }
+                            </style>
+                            <!-- 表未 -->
+                            <!--<div style="margin-top:20px; height:275px;">-->
+                            <!--<div class="counter col_fourth">-->
+                            <!--<div>统计对象</div>-->
+                            <!--<h2 class="timer count-title" id="count-number" data-to="847" data-speed="1500"></h2>-->
+                            <!--<img src="img/down.png">-->
+                            <!--<p>123,456,789</p>-->
+                            <!--</div>-->
+                            <!--<div class="counter col_fourth">-->
+                            <!--<div>统计对象</div>-->
+                            <!--<h2 class="timer count-title" id="count-number" data-to="847" data-speed="1500"></h2>-->
+                            <!--<img src="img/up.png">-->
+                            <!--<p>123,456,789</p>-->
+                            <!--</div>-->
+                            <!--<div class="counter col_fourth">-->
+                            <!--<div>统计对象</div>-->
+                            <!--<h2 class="timer count-title" id="count-number" data-to="9785623"-->
+                            <!--data-speed="1500"></h2><img src="img/up.png">-->
+                            <!--<p>123,456,789</p>-->
+                            <!--</div>-->
+                            <!--<div class="counter col_fourth">-->
+                            <!--<div>统计对象</div>-->
+                            <!--<h2 class="timer count-title" id="count-number" data-to="847" data-speed="1500"></h2>-->
+                            <!--<img src="img/up.png">-->
+                            <!--<p>123,456,789</p>-->
+                            <!--</div>-->
+                            <!--</div>-->
+                        </div>
+                    </div>
+                </div>
+ 
+                <div class="right">
+                    <div class="weather col-md-12" style=" background:#fff;padding:0;height:304px;">
+                        <div id="weather"></div>
+                        <img src="img/weather.png">
+                        <!-- 天气图片占位 -->
+                    </div>
+                    <div class="col-md-12" style=" background:#fff; padding:0;margin-top:20px;">
+                        <div class="portlet light " style="border-bottom:1px solid #ccc;padding-bottom:0">
+                            <div class="portlet-title" style="border:none;margin:0;">
+                                <div class="caption">
+                                    <span class="caption-subject bold uppercase font-dark">系统消息</span>
+                                </div>
+                                @if(@prs.size()>5){
+                                <div class="actions">
+                                    <a href="#" onclick="Skip('待诊')">More</a>
+                                </div>
+                                @}
+                            </div>
+                        </div>
+                        <div class="portlet-content">
+                            <ul>
+                                @if(@prs.size()==0){
+                                <div>暂无系统提示消息00</div>
+                                @}
+                                @else{
+                                @for(var i=0;i<5;i++){
+                                <li onclick="zdemr('${prs[i].patientNo}','${prs[i].visitNo}')">
+                                    <a href="#">${prs[i].kssj,'yyyy-MM-dd HH:mm:ss'} ${prs[i].patient.name}<span>${prs[i].status}</span></a>
+                                </li>
+                                @}
+                                @}
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<div class="page-footer"></div>
+<script src="js/bootstrap.min.js"></script>
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-slider/10.2.0/css/bootstrap-slider.css" rel="stylesheet" />
+  <!-- <script src="https://cdn.bootcss.com/jquery/2.1.1/jquery.min.js"></script> -->
+  <script src="metronic/js/jquery.min.js" type="text/javascript"></script>
+<script src="metronic/js/bootstrap.min.js" type="text/javascript"></script>
+<script src="jquery/shuzi.js" type="text/javascript"></script>
+<script type="text/javascript" src="js/jquery.min.js"></script>
+<script type="text/javascript" src="js/highcharts.js"></script>
+<script src="metronic/js/jquery.easypiechart.min.js"
+        type="text/javascript"></script>
+<script src="metronic/js/bootstrap.min.js" type="text/javascript"></script>
+<script src="layui/layui.all.js" type="text/javascript"></script>
+  <script src="js/bootstrap.min.js"></script>
+ <!--   <script src="https://cdn.bootcss.com/bootstrap/3.3.7/js/bootstrap.min.js"></script> -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-slider/10.2.0/bootstrap-slider.js"></script>
+<div id="win-c" style="display: none">
+    <div class="modal-body" >
+        <div class="row">
+            <div class="col-md-9 edit-temperature">
+                <a class="slider-minus"><span class="glyphicon glyphicon-minus"></span></a>
+                <input type="text" class="span2" value="" data-slider-min="0" data-slider-max="65" data-slider-step="1" data-slider-value="36" data-slider-id="temperature" id="temperature" 
+                data-slider-tooltip="hide" data-slider-handle="round" style="width: 80%;"/>
+                <a class="slider-plus"><span class="glyphicon glyphicon-plus"></span></a>
+            </div> <!-- col-md-10 -->
+            <div class="col-md-3" style="margin-top:10px">
+                <div class="textfield input-group">
+                    <span class="input-group-addon">&emsp;温度值</span>
+                    <input id="temper" type="text" >
+                </div>
+            </div> <!-- col-md-2 -->
+        </div> <!-- row -->
+ 
+        <div class="row">
+            <div class="col-md-9 edit-resistance">
+                <a class="slider-minus"><span class="glyphicon glyphicon-minus"></span></a>
+                <input type="text" class="span2" value="" data-slider-min="20" data-slider-max="910" data-slider-step="1" data-slider-value="100" data-slider-id="resistance" id="resistance" 
+                data-slider-tooltip="hide" data-slider-handle="round" style="width: 80%;"/>
+                <a class="slider-plus"><span class="glyphicon glyphicon-plus"></span></a>
+            </div> <!-- col-md-10 -->
+            <div class="col-md-3" style="margin-top:10px">
+                <div class="textfield input-group">
+                    <span class="input-group-addon">&emsp;电阻值</span>
+                    <input id="duration" type="text">
+                </div> <!-- textfield -->
+            </div> <!-- col-md-2 -->
+        </div> <!-- row -->
+ 
+ 
+        <div class="row">
+            <div class="col-md-9 edit-intensity">
+                <a class="slider-minus"><span class="glyphicon glyphicon-minus"></span></a>
+                <input type="text" class="span2" value="" data-slider-min="0" data-slider-max="9" data-slider-step="1" data-slider-value="5" data-slider-id="intensity" id="intensity" 
+                data-slider-tooltip="hide" data-slider-handle="round" style="width: 80%;"/>
+                <a class="slider-plus"><span class="glyphicon glyphicon-plus"></span></a>
+            </div> <!-- col-md-10 -->
+            <div class="col-md-3">
+                <div class="textfield input-group" style="margin-top:10px">
+                    <span class="input-group-addon">针刺强度</span>
+                    <input id="intense" type="text">
+                </div> <!-- textfield -->
+            </div> <!-- col-md-2 -->
+        </div> <!-- row -->
+    </div>
+    <div class="modal-footer">
+        <button type="button" onclick="clostWinC()" class="btn btn-default btn-xm" data-dismiss="modal" style="width: 150px;float: left;margin:0 30px 0 150px ">关&emsp;&emsp;闭</button>
+        <button type="button" onclick="next2()" class="btn btn-primary btn-xm" style="width: 150px;float: left">确&emsp;&emsp;定</button>
+    </div>
+</div>
+<script>
+    var AmountChange = function() {
+        $('#temper').val(a.getValue());
+        updatePrinciple(a.getValue());
+ 
+    };
+    var DurationChange = function() {
+        $('#duration').val(d.getValue());
+        updateDuration(d.getValue());
+ 
+    };
+    var OneChange = function() {
+        $('#intense').val(b.getValue());
+        updateOne(b.getValue());
+ 
+    };
+ 
+    var a = $('#temperature').slider().on('slide', AmountChange).data('slider');
+    var d = $('#resistance').slider().on('slide', DurationChange).data('slider');
+    var b = $('#intensity').slider().on('slide', OneChange).data('slider');
+ 
+ 
+    var applicationPrinciple = 0,applicationDuration = 0,applicationOne=0;
+ 
+    $(function() {
+        initialiseVars();
+ 
+        $('#temper').on('change', function() {
+ 
+            updateSliders(true , false , false);
+        });
+        $('#duration').on('change', function() {
+ 
+            updateSliders(false , true , false);
+        });
+        $('#intense').on('change', function() {
+ 
+            updateSliders(false , false , true);
+        });
+ 
+ 
+ 
+        $('.edit-temperature .slider-plus').on('click', function() {
+            $('#temper').val(Number($('#temper').val()) + 1);
+            updateSliders(true, false, false);
+        });
+        $('.edit-temperature .slider-minus').on('click', function() {
+            $('#temper').val(Number($('#temper').val()) - 1);
+            updateSliders(true, false, false);
+        });
+ 
+        $('.edit-resistance .slider-plus').on('click', function() {
+            $('#duration').val(Number($('#duration').val()) + 1);
+            updateSliders(false, true, false);
+        });
+        $('.edit-resistance .slider-minus').on('click', function() {
+            $('#duration').val(Number($('#duration').val()) - 1);
+            updateSliders(false, true, false);
+        });
+ 
+        $('.edit-intensity .slider-plus').on('click', function() {
+            $('#intense').val(Number($('#intense').val()) + 1);
+            updateSliders(false, false, true);
+        });
+        $('.edit-intensity .slider-minus').on('click', function() {
+            $('#intense').val(Number($('#intense').val()) - 1);
+            updateSliders(false, false, true);
+        });
+ 
+    });
+ 
+    updateSliders = function(principle, duration,one) {
+        if (principle) {
+            var value = $('#temper').val();
+            a.setValue(Number(value), true);
+            updatePrinciple(a.getValue());
+            console.log("53");
+        }
+        if (duration) {
+            var value = $('#duration').val();
+            d.setValue(Number(value), true);
+            updateDuration(d.getValue());
+            console.log("52");
+        }
+        if (one) {
+            var value = $('#intense').val();
+            b.setValue(Number(value), true);
+            updateOne(b.getValue());
+            console.log("55");
+        }
+    }
+ 
+    var initialiseVars = function() {
+        $('#temper').val(36);
+        $('#duration').val(100);
+        $('#intense').val(5);
+        updatePrinciple(36);
+        updateDuration(100);
+        updateOne(5);
+    }
+ 
+ 
+    var updatePrinciple = function(newPrinciple) {
+        if (newPrinciple !== applicationPrinciple) {
+            applicationPrinciple = newPrinciple;
+        }
+    }
+    var updateDuration = function(newDuration) {
+        if (newDuration !== applicationDuration) {
+            applicationDuration = newDuration;
+        }
+    }
+    var updateOne = function (newOne) {
+        if(newOne !== applicationOne) {
+            applicationOne = newOne;
+        }
+    }
+</script>
+<style>
+    #win-c {
+        position: absolute;
+        width: 50%;
+        /* height: 50%; */
+        left: 25%;
+        top: 100px;
+        background: #fff;
+        border: 2px solid #8283FF;
+    }
+    button{
+        background-color: white;
+    }
+ 
+    .slider-minus, .slider-plus {
+        cursor: pointer;
+        margin: 0 10px;
+    }
+ 
+    .glyphicon {
+        font-size: 17px;
+        text-align: center;
+        margin: 0;
+    }
+ 
+    #temperature .slider-selection, #resistance .slider-selection ,#intensity .slider-selection{
+        background: #8283FF;
+    }
+    #temperature .slider-handle, #resistance .slider-handle ,#intensity .slider-handle{
+        background: blue;
+        border-radius: 50%;
+    }
+    #temperature, #resistance ,#intensity{
+        width: 80%;
+    }
+    .textfield span{
+        background-color: white;
+        border: 0;
+    }
+    .textfield input{
+        background-color: white;
+        border: 1px solid #8283FF;
+        outline: none;
+        width: 90%;
+        text-align: center;
+        margin-top:4px;
+    }
+</style>
+<div class="quick-nav-overlay"></div>
+
+<!-- END CORE PLUGINS -->
+<script>
+    var contextPath = '${request.contextPath}';
+ 
+    function zdemr(patientNo, visitNo) {
+        // console.log(visitNo+","+visitNo)
+        $("#right_content").load("${request.contextPath}/treatment/patient?patientNo=" + patientNo + "&visitNo=" + visitNo);
+    }
+ 
+    function toMypatient() {
+        $("#right_content").load("${request.contextPath}/Mypatient")
+    }
+ 
+    function toindex() {
+        $("#right_content").load("${request.contextPath}/index")
+    }
+ 
+    function topatientRecipels() {
+        $("#right_content").load("${request.contextPath}/patientRecord")
+    }
+ 
+    function toTreatment() {
+        alert("请选择需要诊断病人")
+        /* $("#right_content").load("${request.contextPath}/cure_step1.html") */
+    }
+ 
+    $("#logout").click(function () {
+        var conf = confirm("确认注销？");
+        if (conf) {
+            location.href = "/xwmh/login";
+        }
+    })
+ 
+    $(document).ready(function () {
+        var h = document.documentElement.clientHeight || document.body.clientHeight;
+        // $("body").height(h);
+        // $(".page-container").height(h-80);
+        $('#clickmewow').click(function () {
+            $('#radio1003').attr('checked', 'checked');
+        });
+        $(".nav.sidebar-nav li a").click(function () {
+            $(this).addClass("check")
+                .parent().siblings("li").find("a").removeClass("check");
+ 
+        })
+        $(".nav.sidebar-nav li").eq(0).find("a").trigger("click");
+    })
+    $(function () {
+        $("#main").find("div").width(($(".portlet.light ").width()))
+            .find("canvas").width(($(".portlet.light ").width()));
+    })
+</script>
+<script src="bootstrap/js/echarts.js" type="text/javascript"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.7.0/Chart.js"></script>
+<script type="text/javascript">
+    var data = [];
+    var datat = [];
+    var i = j = 0;
+    $("input[name=disease]").each(function () {
+        data[i] = $(this).val();
+        i++;
+    });
+    // console.log(data)
+    $("input[name=counter]").each(function () {
+        datat[j] = $(this).val();
+        j++;
+    })
+    // console.log(datat)
+    var myChart = echarts.init(document.getElementById('main'));
+    var t = $("input[name=disease]").eq(0).val();
+ 
+    var option = {
+        backgroundColor: 'rgba(250,250,250,0.5)',
+        tooltip: {
+            trigger: 'axis',
+        },
+        grid: {
+            left: '2%',
+            right: '4%',
+            bottom: '3%',
+            containLabel: true
+        },
+        xAxis: {
+            type: 'value',
+            boundaryGap: [0, 0.01],
+            data: ['0%', '30%', '65%', '100%']
+        },
+        yAxis: {
+            type: 'category',
+            data: [data[3], data[2], data[1], data[0]],
+            axisLabel: {
+                show: true,
+                textStyle: {
+                    fontSize: 16,
+                    letterSpacing: '2px'
+                }
+            }
+        },
+        series: [
+            {
+                name: '',
+                type: 'bar',
+                data: [datat[3], datat[2], datat[1], datat[0]],
+                barWidth: '10',
+                itemStyle: {
+                    normal: {
+                        color: function (params) {
+                            var colorList = ['#00C78C', '#F0E68C', '#FF9912', '#ff7477'];
+                            return colorList[params.dataIndex];
+                        },
+                        label: {
+                            textStyle: {
+                                fontSize: 16,
+ 
+                            }
+                        }
+                    }
+                },
+                label: {
+                    normal: {
+                        show: true,//显示数字
+                        position: 'right',
+                    }
+                },
+            }
+        ]
+    };
+    myChart.setOption(option);
+ 
+    /* 表   */
+    var canvas = document.getElementById("canvas1");
+ 
+    var multiply = {
+        beforeDatasetsDraw: function (chart, options, el) {
+            chart.ctx.globalCompositeOperation = 'multiply';
+        },
+        afterDatasetsDraw: function (chart, options) {
+            chart.ctx.globalCompositeOperation = 'source-over';
+        },
+    };
+ 
+    var gradientThisWeek = canvas.getContext('2d').createLinearGradient(0, 0, 0, 150);
+    gradientThisWeek.addColorStop(0, '#5555FF');
+    gradientThisWeek.addColorStop(1, '#9787FF');
+ 
+    var gradientPrevWeek = canvas.getContext('2d').createLinearGradient(0, 0, 0, 150);
+    gradientPrevWeek.addColorStop(0, '#FF55B8');
+    gradientPrevWeek.addColorStop(1, '#FF8787');
+ 
+    var config = {
+        type: 'line',
+        data: {
+ 
+            labels: ["SUN", "MON", "TUE", "WED", "THU", "FRI", "SAT", "SUN", "MON"],
+            datasets: [
+                {
+                    label: 'Temperature',
+                    data: [18, 26, 14, 22, 12, 20, 12, 18, 10],
+                    fill: false,
+                    borderColor: 'rgba(255, 255, 255, 0.2)',
+                    borderWidth: 2,
+                    pointBackgroundColor: 'transparent',
+                    pointBorderColor: '#FFFFFF',
+                    pointBorderWidth: 3,
+                    pointHoverBorderColor: 'rgba(255, 255, 255, 0.2)',
+                    pointHoverBorderWidth: 10,
+                    lineTension: 0,
+                }
+            ]
+        },
+        options: {
+            responsive: false,
+            elements: {
+                point: {
+                    radius: 6,
+                    hitRadius: 6,
+                    hoverRadius: 6
+                }
+            },
+            legend: {
+                display: false,
+            },
+            tooltips: {
+                backgroundColor: 'transparent',
+                displayColors: false,
+                bodyFontSize: 14,
+                callbacks: {
+                    label: function (tooltipItems, data) {
+                        return tooltipItems.yLabel + '°C';
+                    }
+                }
+            },
+            scales: {
+                xAxes: [{
+                    display: false,
+                }],
+                yAxes: [{
+                    display: false,
+                    ticks: {
+                        beginAtZero: true,
+                    },
+                }]
+            }
+        },
+        plugins: [multiply],
+    };
+ 
+    window.chart = new Chart(canvas, config);
+    /* 表   */
+</script>
+<script>
+    function Skip(value) {
+        // 根据挂号类型跳转页面
+        var url = "${request.contextPath}/Mypatient?key2=" + value;
+        $("#right_content").load(url);
+    }
+</script>
+ 
+</body>
+<style>
+    /* 表 */
+    .card {
+        background: linear-gradient(-45deg, #5555FF, #9787FF);
+        box-shadow: 0 0 6px rgba(0, 0, 0, 0.1);
+        /*   position: absolute;
+          top: 50%;
+          left: 50%; */
+        transform: translate(-50%, -50%);
+        width: 300px;
+        height: 375px;
+        overflow: hidden;
+    }
+ 
+    .box {
+        background-color: #4E95D7;
+        width: 45%;
+        padding-top: 10px;
+        margin: 20px 0;
+    }
+ 
+    .card .about {
+        height: 185px;
+        padding: 20px;
+        box-sizing: border-box;
+    }
+ 
+    .card .about h3,
+    .card .about .lead {
+        margin-top: 0;
+        margin-bottom: 0;
+        font-weight: 400;
+    }
+ 
+    .card .about h3 {
+        font-size: 24px;
+        color: #fff;
+    }
+ 
+    .card .about .lead {
+        color: #eee;
+    }
+ 
+    .card .info {
+        float: left;
+        padding: 10px 30px 10px 0;
+    }
+ 
+    .card .info p {
+        font-size: 11px;
+        color: #aaa;
+        font-weight: 300;
+    }
+ 
+    .legends {
+        padding-top: 20px;
+        overflow: hidden;
+    }
+ 
+    .legend {
+        display: block;
+        width: 8px;
+        height: 8px;
+        margin-top: 15px;
+        margin-bottom: 15px;
+        border-radius: 50%;
+    }
+ 
+    .legend--this {
+        background-color: #5555FF;
+    }
+ 
+    .legend--prev {
+        background-color: #FF55B8;
+    }
+ 
+    .axis {
+        color: #fff;
+        z-index: 1;
+        text-transform: uppercase;
+        display: flex;
+        width: 100%;
+        bottom: 0;
+    }
+ 
+    .axis .tick {
+        flex: 1;
+        position: relative;
+        font-size: 11px;
+        text-align: center;
+        padding-top: 10px;
+        padding-bottom: 10px;
+        line-height: 20px;
+    }
+ 
+    .axis .tick::after {
+        content: "";
+        position: absolute;
+        display: block;
+        right: 0;
+        bottom: 0;
+        width: 1px;
+        height: 200px;
+        background: rgba(255, 255, 255, 0.2);
+    }
+ 
+    .axis .tick .value {
+        transform: translateY(-240px);
+        opacity: 0;
+        transition: all 0.3s;
+        position: absolute;
+        top: 20px;
+        left: 0;
+        color: #fff;
+        border-radius: 2px;
+        width: 100%;
+        line-height: 20px;
+    }
+ 
+    .axis .tick:hover .value.value--this {
+        transform: translateY(-160px);
+        display: block;
+        opacity: 0.4;
+    }
+ 
+    .value.value--this {
+        color: #fff;
+        font-weight: bold;
+    }
+ 
+    .day-number {
+        display: block;
+    }
+ 
+    .day-name {
+        display: block;
+        opacity: 0.4;
+    }
+ 
+    /* 表 */
+    body {
+        background-color: #5C9BD1;
+    }
+ 
+    .page-sidebar .page-sidebar-menu > li.active.open > a, .page-sidebar .page-sidebar-menu > li.active > a, .page-sidebar-closed.page-sidebar-fixed .page-sidebar:hover .page-sidebar-menu > li.active.open > a, .page-sidebar-closed.page-sidebar-fixed .page-sidebar:hover .page-sidebar-menu > li.active > a {
+        background: #5C9BD1;
+        color: #fff;
+    }
+ 
+    .page-sidebar, .page-sidebar-closed.page-sidebar-fixed .page-sidebar:hover {
+        background-color: #5C9BD1;
+    }
+ 
+    li a {
+        color: white;
+        font-size: 16px;
+    }
+ 
+    .profile-userpic img {
+        float: none;
+        margin: 0 auto;
+        width: 50%;
+        height: 50%;
+        -webkit-border-radius: 50% !important;
+        -moz-border-radius: 50% !important;
+        border-radius: 50% !important;
+    }
+ 
+    .page-header.navbar .page-logo {
+        background: #74AFE7;
+    }
+ 
+    .left {
+        width: 63%;
+        float: left;
+        height: 740px;
+        overflow: hidden;
+    }
+ 
+    .right {
+        width: 35%;
+        float: right;
+        height: 740px;
+        overflow: hidden;
+    }
+ 
+    .left ul li {
+        width: 23%;
+        float: left;
+        text-align: center;
+        list-style: none;
+    }
+ 
+    .left ul li span {
+        display: block;
+        font-size: 36px;
+        color: #4c92d7;
+    }
+ 
+    .left ul li:last-child {
+        border-left: 2px solid #ccc;
+    }
+ 
+    .left ul li:last-child span {
+        color: #f56356;
+    }
+ 
+    .counter {
+        display: inline-block;
+        width: 45%;
+        border: 2px solid #74AFE7;
+        margin: 10px 2%;
+        padding: 5px 50px;
+    }
+ 
+    .counter h2 {
+        display: inline-block;
+        margin: 10px 0;
+    }
+ 
+    .counter img {
+        vertical-align: baseline;
+        width: 15px;
+        height: 15px;
+        margin-left: 15px;
+    }
+ 
+    .counter p {
+        color: #c1c1c1;
+        margin: 0;
+    }
+ 
+    .portlet-content ul {
+        padding-left: 20px;
+        min-height: 320px;
+    }
+ 
+    .portlet-content ul li {
+        list-style: none;
+        line-height: 45px;
+        border-bottom: 1px solid #ccc;
+    }
+ 
+    .portlet-content ul li a {
+        color: #737373;
+        font-size: 14px;
+    }
+ 
+    .portlet-content ul li a span {
+        display: inline-block;
+        height: 12px;
+        line-height: 12px;
+        margin-left: 10px;
+        font-size: 12px;
+        background: red;
+        color: #fff;
+    }
+ 
+    .header-bar {
+        cursor: pointer;
+    }
+ 
+    .header-bar:hover {
+        font-size: 25px;
+    }
+ 
+    .page_and_btn {
+        width: 100%;
+        height: auto;
+        overflow: hidden;
+        padding: 10px 0px 0px 0px;
+    }
+ 
+    .page_and_btn ul {
+        margin: 0px;
+        list-style: none;
+        float: right;
+        width: auto;
+        height: 100%;
+        overflow: hidden;
+        padding: 0px;
+    }
+ 
+    .page_and_btn ul li {
+        float: left;
+        border: 1px solid #CCCCCC;
+        height: 20px;
+        line-height: 20px;
+        margin: 0px 2px;
+    }
+ 
+    .page_and_btn ul li a {
+        color: #333;
+        text-decoration: none;
+    }
+ 
+    .page_and_btn ul li a, .pageinfo {
+        display: block;
+        padding: 0px 6px;
+        background: #FAFBFD;
+    }
+ 
+    .page_and_btn {
+        color: #555;
+    }
+ 
+    .current {
+        background: #ccced4;
+        display: block;
+        padding: 0px 6px;
+        font-weight: bold;
+    }
+ 
+    .page_and_btn div {
+        float: left;
+    }
+</style>
+</html>
